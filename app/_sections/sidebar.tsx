@@ -5,16 +5,18 @@ import { FaRegUser } from "react-icons/fa";
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col  w-[250px] bg-green-900 h-screen">
-      <div className="flex justify-center p-2 text-white text-xl h-16">
+    <div className="flex flex-col  w-[250px] bg-green-950 h-screen">
+      <div className="flex p-8 text-white text-2xl font-bold items-center h-16">
         Siohioma
       </div>
-      <div className=" text-white flex gap-8 flex-col p-4">
-        <div className="flex gap-4 items-center">
-          <SiWindows10 />
-          <span>Overview</span>
+      <div className=" text-white flex gap-4  mt-4 flex-col">
+        <div className="flex gap-2 items-center px-8 border-l-2  border-lime-400">
+          <div className="text-lime-400">
+            <SiWindows10 />
+          </div>
+          <span>Dashboard</span>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-2 items-center px-8">
           <FaRegUser />
           <span>User</span>
         </div>
