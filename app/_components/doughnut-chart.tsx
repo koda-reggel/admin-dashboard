@@ -26,19 +26,6 @@ const options: ChartOptions<"doughnut"> = {
     title: {
       display: false,
     },
-    // tooltip: {
-    //   callbacks: {
-    //     label: function (tooltipItem) {
-    //       const tooltips = [
-    //         "Product Launched",
-    //         "Ongoing Product",
-    //         "Product Sold",
-    //       ];
-    //       const value = tooltipItem.raw;
-    //       return `${tooltips[tooltipItem.dataIndex]}: ${value}`;
-    //     },
-    //   },
-    // },
   },
 };
 

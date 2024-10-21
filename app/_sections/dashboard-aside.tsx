@@ -12,8 +12,8 @@ import DoughnutChart from "../_components/doughnut-chart";
 
 export default function DashboardAside() {
   return (
-    <div className="flex flex-col gap-4 py-4 pl-4 w-[415px]">
-      <Card className="p-4">
+    <div className="flex flex-col gap-4 md:py-4 xl:pl-4 xl:w-[415px]">
+      <Card className="md:p-4">
         <CardHeader className="flex justify-center ">
           <label className="text-2xl">Total View Performance</label>
         </CardHeader>
@@ -41,7 +41,7 @@ export default function DashboardAside() {
         </CardFooter>
       </Card>
 
-      <Card className="p-4 grow bg-[#CFE2AA]">
+      <Card className="md:p-4 bg-[#CFE2AA]">
         <CardHeader className="flex">
           <label>Logo</label>
         </CardHeader>
@@ -54,7 +54,9 @@ export default function DashboardAside() {
           </p>
         </CardBody>
         <CardFooter>
-          <Button className=" bg-emerald-700">Update to Siohioma +</Button>
+          <Button className="w-full bg-emerald-700">
+            Update to Siohioma +
+          </Button>
         </CardFooter>
       </Card>
     </div>

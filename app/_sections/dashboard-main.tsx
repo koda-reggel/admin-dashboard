@@ -19,10 +19,10 @@ import { parseDate } from "@internationalized/date";
 
 export default function DashboardMain() {
   return (
-    <div className="flex flex-col flex-1 border-r gap-4 py-4 pr-4">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col flex-1 lg:border-r gap-4 md:py-4 xl:pr-4 lg:w-[865px] h-full">
+      <div className="md:flex items-center justify-between hidden">
         <div className="flex flex-col justify-between">
-          <h1 className="font-semibold text-xl leading-none">Dashboard</h1>
+          <h1 className="font-semibold xl:text-xl leading-none">Dashboard</h1>
           <label>An any way to manage sales with care and precision</label>
         </div>
         <DateRangePicker
@@ -34,8 +34,8 @@ export default function DashboardMain() {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
-        <Card className="bg-green-950 text-white p-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <Card className="bg-green-950 text-white xl:p-4 col-span-2 md:col-span-1">
           <CardHeader className="flex gap-2">
             <span className="text-red-400">
               <FaRegDotCircle />
@@ -60,18 +60,18 @@ export default function DashboardMain() {
           </CardFooter>
         </Card>
 
-        <Card className="p-4">
+        <Card className="xl:p-4">
           <CardHeader className="flex justify-between items-center">
             <label>Net Income</label>
             <span>
               <PiDotsThreeOutlineFill />
             </span>
           </CardHeader>
-          <CardBody className="flex flex-row gap-1 ">
-            <span className="text-xl">$</span>
-            <label className="text-5xl">193.000</label>
+          <CardBody className="flex flex-row gap-1 justify-center items-center">
+            <span className="xl:text-xl text-lg">$</span>
+            <label className="xl:text-5xl text-4xl">193.000</label>
           </CardBody>
-          <CardFooter className="gap-1.5">
+          <CardFooter className="gap-1.5 text-xs md:text-base justify-cente">
             <div className="text-green-500 flex gap-1.5 items-center">
               <FiTrendingUp />
               <span>+35%</span>
@@ -80,18 +80,18 @@ export default function DashboardMain() {
           </CardFooter>
         </Card>
 
-        <Card className="p-4">
+        <Card className="xl:p-4">
           <CardHeader className="flex justify-between items-center">
             <label>Total Return</label>
             <span>
               <PiDotsThreeOutlineFill />
             </span>
           </CardHeader>
-          <CardBody className="flex flex-row gap-1 ">
-            <span className="text-xl">$</span>
-            <label className="text-5xl">32.000</label>
+          <CardBody className="flex flex-row gap-1 justify-center items-center">
+            <span className="xl:text-xl text-lg">$</span>
+            <label className="xl:text-5xl text-4xl r">32.000</label>
           </CardBody>
-          <CardFooter className="gap-1.5">
+          <CardFooter className="gap-1.5 text-xs md:text-base justify-center">
             <div className="text-red-500 flex gap-1.5 items-center">
               <FiTrendingDown />
               <span>-24%</span>
@@ -101,8 +101,8 @@ export default function DashboardMain() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 grow">
-        <Card className="p-4">
+      <div className="flex flex-col justify-between gap-4">
+        <Card className="md:p-4 flex-1">
           <CardHeader className="justify-between items-center">
             <label>Transaction</label>
             <PiDotsThreeOutlineFill />
@@ -175,8 +175,8 @@ export default function DashboardMain() {
           </CardBody>
         </Card>
 
-        <div className="flex flex-col gap-4">
-          <Card className="px-4 pt-4">
+        <div className="flex flex-col gap-4 flex-1">
+          <Card className="md:px-4 pt-4">
             <CardHeader className="flex justify-between">
               <label>Revenue</label>
               <div className="flex gap-4">
@@ -206,7 +206,7 @@ export default function DashboardMain() {
             </CardBody>
           </Card>
 
-          <Card className="p-4 grow">
+          <Card className="md:p-4">
             <CardHeader className="flex justify-between">
               <label>Sales Report</label>
               <PiDotsThreeOutlineFill />
