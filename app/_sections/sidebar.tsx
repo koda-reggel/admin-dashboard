@@ -10,13 +10,13 @@ export default function Sidebar() {
         Siohioma
       </div>
       <div className=" text-white flex gap-4  mt-4 flex-col">
-        <div className="flex gap-2 items-center px-8 border-l-2  border-lime-400">
+        <div className="flex gap-2 hover:bg-green-800 items-center px-8 border-l-2  border-lime-400">
           <div className="text-lime-400">
             <SiWindows10 />
           </div>
           <span>Dashboard</span>
         </div>
-        <div className="flex gap-2 items-center px-8">
+        <div className="flex gap-2 items-center px-8  hover:bg-green-800">
           <FaRegUser />
           <span>User</span>
         </div>
