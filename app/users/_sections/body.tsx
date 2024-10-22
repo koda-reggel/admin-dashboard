@@ -19,6 +19,8 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import { Checkbox } from "@nextui-org/checkbox";
+import { IoSwapVerticalOutline } from "react-icons/io5";
 import { CiCircleCheck } from "react-icons/ci";
 import { Select, SelectSection } from "@nextui-org/select";
 import { IoFunnelOutline } from "react-icons/io5";
@@ -28,38 +30,48 @@ import { Input } from "@nextui-org/input";
 import { CiLocationOn } from "react-icons/ci";
 import { VscSettings } from "react-icons/vsc";
 import { Pagination, Spinner } from "@nextui-org/react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Link,
+} from "@nextui-org/react";
 
 const rows = [
   {
     key: "1",
     number: 1,
     name: "Tony Reichert",
-    Email: "WilliamH@gmail.com",
-    Location: "New York",
+    email: "WilliamH@gmail.com",
+    location: "New York",
     status: "Subscribed",
   },
   {
     key: "2",
     number: 2,
     name: "Zoey Lang",
-    Email: "WilliamH@gmail.com",
-    Location: "New York",
+    email: "WilliamH@gmail.com",
+    location: "New York",
     status: "Subscribed",
   },
   {
     key: "3",
     number: 3,
     name: "Jane Fisher",
-    Email: "Jane.Fisher@gmail.com",
-    Location: "London",
+    email: "Jane.Fisher@gmail.com",
+    location: "London",
     status: "Subscribed",
   },
   {
     key: "4",
     number: 4,
     name: "William Howard",
-    Email: "WilliamH@gmail.com",
-    Location: "New York",
+    email: "WilliamH@gmail.com",
+    location: "New York",
     status: "Subscribed",
   },
 ];
@@ -88,15 +100,15 @@ const columns = [
 ];
 
 export default function Body() {
-  const [selectedKeys, setSelectedKeys] = useState(new Set([""]));
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="flex flex-col p-4 bg-blue-300">
+    <div className="flex flex-col p-4 ">
       <div className="flex w-full justify-between  ">
         <h1 className="flex items-center">User</h1>
         <div className="flex gap-4">
           <Input
+            className="hidden lg:block"
             startContent={<IoFunnelOutline />}
             placeholder="Filter users..."
           ></Input>
@@ -108,6 +120,7 @@ export default function Body() {
             >
               New user
             </Button>
+
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
               <ModalContent>
                 <ModalHeader className="flex justify-between border flex-col">
@@ -169,14 +182,13 @@ export default function Body() {
         <Table
           aria-label="Controlled table example with dynamic content"
           selectionMode="multiple"
-          selectedKeys={selectedKeys}
-          onSelectChange={setSelectedKeys}
         >
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
+
           <TableBody items={rows}>
             {(item) => (
               <TableRow key={item.key}>
@@ -187,6 +199,81 @@ export default function Body() {
             )}
           </TableBody>
         </Table>
+
+        {/* <Table>
+          <TableHeader>
+            <TableColumn>
+              <Checkbox />
+            </TableColumn>
+            <TableColumn>#</TableColumn>
+            <TableColumn>Name</TableColumn>
+            <TableColumn>Email</TableColumn>
+            <TableColumn>Location</TableColumn>
+            <TableColumn>Status</TableColumn>
+          </TableHeader>
+
+          <TableBody>
+            <TableRow key="1">
+              <TableCell>
+                <Checkbox />
+              </TableCell>
+              <TableCell>1</TableCell>
+              <TableCell>Alex Smith</TableCell>
+              <TableCell>alexsmith@gmail.com</TableCell>
+              <TableCell>New York,USA</TableCell>
+              <TableCell>
+                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
+                  Subscribed
+                </h3>
+              </TableCell>
+            </TableRow>
+
+            <TableRow key="2">
+              <TableCell>
+                <Checkbox />
+              </TableCell>
+              <TableCell>2</TableCell>
+              <TableCell>Jordan Brown</TableCell>
+              <TableCell>Jordanbrown@gmail.com</TableCell>
+              <TableCell>New York,USA</TableCell>
+              <TableCell>
+                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
+                  Subscribed
+                </h3>
+              </TableCell>
+            </TableRow>
+
+            <TableRow key="3">
+              <TableCell>
+                <Checkbox />
+              </TableCell>
+              <TableCell>3</TableCell>
+              <TableCell>Alex Smith</TableCell>
+              <TableCell>alexsmith@gmail.com</TableCell>
+              <TableCell>New York,USA</TableCell>
+              <TableCell>
+                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
+                  Subscribed
+                </h3>
+              </TableCell>
+            </TableRow>
+
+            <TableRow key="4">
+              <TableCell>
+                <Checkbox />
+              </TableCell>
+              <TableCell>4</TableCell>
+              <TableCell>Alex Smith</TableCell>
+              <TableCell>alexsmith@gmail.com</TableCell>
+              <TableCell>New York,USA</TableCell>
+              <TableCell>
+                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
+                  Subscribed
+                </h3>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table> */}
       </div>
     </div>
   );

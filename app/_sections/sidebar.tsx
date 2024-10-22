@@ -2,7 +2,10 @@
 
 import { SiWindows10 } from "react-icons/si";
 import { FaRegUser } from "react-icons/fa";
+
 import SidebarLinks from "../_components/sidebar-links";
+
+import { FaVideo } from "react-icons/fa";
 
 export default function Sidebar() {
   return (
