@@ -30,9 +30,5 @@ const options: ChartOptions<"doughnut"> = {
 };
 
 export default function DoughnutChart() {
-  return (
-    <div className="h-[225px]">
-      <Doughnut data={data} options={options} />
-    </div>
-  );
+  return <Doughnut data={data} options={options} />;
 }

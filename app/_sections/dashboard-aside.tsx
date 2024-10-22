@@ -12,44 +12,49 @@ import DoughnutChart from "../_components/doughnut-chart";
 
 export default function DashboardAside() {
   return (
-    <div className="flex flex-col gap-4 md:py-4 xl:pl-4 xl:w-[415px]">
-      <Card className="md:p-4">
-        <CardHeader className="flex justify-center ">
-          <label className="text-2xl">Total View Performance</label>
+    <div className="flex flex-col gap-4 xl:py-4 w-full justify-between lg:w-[250px] xl:w-[350px]">
+      <Card className="p-4 flex-1">
+        <CardHeader className="flex justify-center p-0">
+          <label className="text-lg xl:text-xl">Total View Performance</label>
         </CardHeader>
-        <Divider className="m-4" />
-        <CardBody className="items-center text-center gap-4">
-          <DoughnutChart />
-          <div className="text-lg font-thin">
-            Here are some tips on how to <br /> improve your score.
+        <Divider className="my-2" />
+        <CardBody className="items-center justify-center text-center gap-8 lg:p-0 xl:px-2">
+          <div className="w-[150px] xl:w-[200px]">
+            <DoughnutChart />
+          </div>
+          <div className=" font-thin xl:text-xl">
+            Here are some tips on how to improve your score.
           </div>
           <Button variant="bordered" className="w-full">
             Guide Views
           </Button>
         </CardBody>
-        <Divider className="m-4" />
-        <CardFooter className="justify-evenly ">
+        <Divider className="my-2" />
+        <CardFooter className="justify-between px-0 text-xs xl:text-sm xl:px-2">
           <div className="flex items-center gap-1">
-            <span className="w-3 h-3 bg-lime-400 rounded"></span>View Count
+            <span className="w-2 h-2 xl:w-3 xl:h-3  bg-lime-400 rounded"></span>
+            View Count
           </div>
           <div className="flex items-center gap-1">
-            <span className="w-3 h-3 bg-emerald-700 rounded"></span>Percentage
+            <span className="w-2 h-2 xl:w-3 xl:h-3  bg-emerald-700 rounded"></span>
+            Percentage
           </div>
           <div className="flex items-center gap-1">
-            <span className="w-3 h-3 bg-orange-500 rounded"></span>Sales
+            <span className="w-2 h-2 xl:w-3 xl:h-3  bg-orange-500 rounded"></span>
+            Sales
           </div>
         </CardFooter>
       </Card>
 
-      <Card className="md:p-4 bg-[#CFE2AA]">
-        <CardHeader className="flex">
+      <Card className="p-4 bg-[#CFE2AA] ">
+        <CardHeader className="flex xl:text-lg">
           <label>Logo</label>
         </CardHeader>
         <CardBody className="gap-4">
-          <label className="text-2xl w-52 leading-none">
+          <label className="text-xl  leading-none xl:leading-normal">
             Level up your sales managing to the next level.
           </label>
-          <p className="text-sm font-light ">
+          <p className="text-xs font-light xl:text-base">
             An any way to manage sales with care and precision
           </p>
         </CardBody>

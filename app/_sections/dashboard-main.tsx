@@ -19,182 +19,187 @@ import { parseDate } from "@internationalized/date";
 
 export default function DashboardMain() {
   return (
-    <div className="flex flex-col flex-1 lg:border-r gap-4 md:py-4 xl:pr-4 lg:w-[865px] h-full">
+    <div className="flex flex-col flex-1 xl:border-r gap-4 xl:py-4 xl:pr-4 w-full h-full">
       <div className="md:flex items-center justify-between hidden">
         <div className="flex flex-col justify-between">
-          <h1 className="font-semibold xl:text-xl leading-none">Dashboard</h1>
-          <label>An any way to manage sales with care and precision</label>
+          <h1 className="font-semibold xl:text-xl leading-none text-lg">
+            Dashboard
+          </h1>
+          <p className="text-sm">
+            An any way to manage sales with care and precision
+          </p>
         </div>
-        <DateRangePicker
-          className="max-w-xs"
-          defaultValue={{
-            start: parseDate("2024-04-01"),
-            end: parseDate("2024-04-08"),
-          }}
-        />
+        <div>
+          <DateRangePicker
+            className="max-w-xs"
+            defaultValue={{
+              start: parseDate("2024-04-01"),
+              end: parseDate("2024-04-08"),
+            }}
+          />
+        </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <Card className="bg-green-950 text-white xl:p-4 col-span-2 md:col-span-1">
-          <CardHeader className="flex gap-2">
+      <div className="grid grid-cols-12 gap-4">
+        <Card className="bg-green-950 text-white xl:p-2 col-span-12 md:col-span-4">
+          <CardHeader className="flex gap-2 text-sm xl:text-base">
             <span className="text-red-400">
               <FaRegDotCircle />
             </span>
-            <label>Update</label>
+            <p>Update</p>
           </CardHeader>
-          <CardBody>
-            <span className="text-gray-400 font-light text-sm">
+          <CardBody className="gap-1 py-1">
+            <span className="text-gray-400 font-light text-xs xl:text-sm">
               Feb 12th 2024
             </span>
-            <label className="text-lg">
+            <p className="xl:text-lg leading-none">
               Sales revenue increased
               <span className="text-lime-400"> 40% </span>
               in 1 week
-            </label>
+            </p>
           </CardBody>
           <CardFooter className="flex items-center text-gray-400 text-sm gap-1">
-            <label>See Statistics</label>
+            <p>See Statistics</p>
             <div className="text-lg">
               <MdOutlineKeyboardArrowRight />
             </div>
           </CardFooter>
         </Card>
 
-        <Card className="xl:p-4">
-          <CardHeader className="flex justify-between items-center">
-            <label>Net Income</label>
+        <Card className="xl:p-2 col-span-6 md:col-span-4">
+          <CardHeader className="flex justify-between items-center text-sm xl:text-base">
+            <p>Net Income</p>
             <span>
               <PiDotsThreeOutlineFill />
             </span>
           </CardHeader>
           <CardBody className="flex flex-row gap-1 justify-center items-center">
-            <span className="xl:text-xl text-lg">$</span>
-            <label className="xl:text-5xl text-4xl">193.000</label>
+            <span className="self-start">$</span>
+            <p className="xl:text-4xl text-3xl">193.000</p>
           </CardBody>
-          <CardFooter className="gap-1.5 text-xs md:text-base justify-cente">
+          <CardFooter className="gap-1.5 text-xs xl:text-base justify-center">
             <div className="text-green-500 flex gap-1.5 items-center">
               <FiTrendingUp />
               <span>+35%</span>
             </div>
-            <label>from last month</label>
+            <p>from last month</p>
           </CardFooter>
         </Card>
 
-        <Card className="xl:p-4">
-          <CardHeader className="flex justify-between items-center">
-            <label>Total Return</label>
+        <Card className="xl:p-2 col-span-6 md:col-span-4">
+          <CardHeader className="flex justify-between items-center text-sm xl:text-base">
+            <p>Total Return</p>
             <span>
               <PiDotsThreeOutlineFill />
             </span>
           </CardHeader>
           <CardBody className="flex flex-row gap-1 justify-center items-center">
-            <span className="xl:text-xl text-lg">$</span>
-            <label className="xl:text-5xl text-4xl r">32.000</label>
+            <span className="self-start">$</span>
+            <p className="xl:text-4xl text-3xl ">32.000</p>
           </CardBody>
-          <CardFooter className="gap-1.5 text-xs md:text-base justify-center">
+          <CardFooter className="gap-1.5 text-xs xl:text-base justify-center">
             <div className="text-red-500 flex gap-1.5 items-center">
               <FiTrendingDown />
               <span>-24%</span>
             </div>
-            <label>from last month</label>
+            <p>from last month</p>
           </CardFooter>
         </Card>
       </div>
 
-      <div className="flex flex-col justify-between gap-4">
-        <Card className="md:p-4 flex-1">
-          <CardHeader className="justify-between items-center">
-            <label>Transaction</label>
-            <PiDotsThreeOutlineFill />
-          </CardHeader>
+      <div className="flex flex-col lg:flex-row justify-between gap-4 h-full">
+        <div className="flex w-full flex-col ">
+          <Card className="md:p-4 lg:p-0 flex-1 xl:p-2">
+            <CardHeader className="justify-between items-center text-sm xl:text-base">
+              <p>Transaction</p>
+              <PiDotsThreeOutlineFill />
+            </CardHeader>
 
-          <CardBody className="gap-4">
-            <div className="flex items-center gap-4">
-              <Button isIconOnly radius="full">
-                <FaTshirt />
-              </Button>
-              <div className="flex flex-col w-full">
-                <div className="flex justify-between">
-                  <label className="font-bold">Premium T-shirt</label>
-                  <span className="text-green-700">Completed</span>
-                </div>
-                <div className="flex justify-between text-gray-500 text-sm">
-                  <label>Jul 12th 2024</label>
-                  <span>OJWEJS7ISNC</span>
+            <CardBody className="gap-4">
+              <div className="flex items-center xl:gap-4 gap-2">
+                <Button isIconOnly radius="full" size="sm">
+                  <FaTshirt />
+                </Button>
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between text-sm xl:text-base">
+                    <p className="font-bold ">Premium T-shirt</p>
+                    <span className="text-green-700">Completed</span>
+                  </div>
+                  <div className="flex justify-between text-gray-500 text-xs xl:text-sm">
+                    <p>Jul 12th 2024</p>
+                    <span>OJWEJS7ISNC</span>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button isIconOnly radius="full">
-                <FaTshirt />
-              </Button>
-              <div className="flex flex-col w-full">
-                <div className="flex justify-between">
-                  <label className="font-bold">Premium T-shirt</label>
-                  <span className="text-green-700">Completed</span>
-                </div>
-                <div className="flex justify-between text-gray-500 text-sm">
-                  <label>Jul 12th 2024</label>
-                  <span>OJWEJS7ISNC</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button isIconOnly radius="full">
-                <FaTshirt />
-              </Button>
-              <div className="flex flex-col w-full">
-                <div className="flex justify-between">
-                  <label className="font-bold">Premium T-shirt</label>
-                  <span className="text-green-700">Completed</span>
-                </div>
-                <div className="flex justify-between text-gray-500 text-sm">
-                  <label>Jul 12th 2024</label>
-                  <span>OJWEJS7ISNC</span>
+              <div className="flex items-center xl:gap-4 gap-2">
+                <Button isIconOnly radius="full" size="sm">
+                  <FaTshirt />
+                </Button>
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between text-sm">
+                    <p className="font-bold ">Premium T-shirt</p>
+                    <span className="text-green-700">Completed</span>
+                  </div>
+                  <div className="flex justify-between text-gray-500 text-xs">
+                    <p>Jul 12th 2024</p>
+                    <span>OJWEJS7ISNC</span>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button isIconOnly radius="full">
-                <FaTshirt />
-              </Button>
-              <div className="flex flex-col w-full">
-                <div className="flex justify-between">
-                  <label className="font-bold">Premium T-shirt</label>
-                  <span className="text-green-700">Completed</span>
-                </div>
-                <div className="flex justify-between text-gray-500 text-sm">
-                  <label>Jul 12th 2024</label>
-                  <span>OJWEJS7ISNC</span>
+              <div className="flex items-center xl:gap-4 gap-2">
+                <Button isIconOnly radius="full" size="sm">
+                  <FaTshirt />
+                </Button>
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between text-sm">
+                    <p className="font-bold ">Premium T-shirt</p>
+                    <span className="text-green-700">Completed</span>
+                  </div>
+                  <div className="flex justify-between text-gray-500 text-xs">
+                    <p>Jul 12th 2024</p>
+                    <span>OJWEJS7ISNC</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardBody>
-        </Card>
+              <div className="flex items-center xl:gap-4 gap-2">
+                <Button isIconOnly radius="full" size="sm">
+                  <FaTshirt />
+                </Button>
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between text-sm">
+                    <p className="font-bold ">Premium T-shirt</p>
+                    <span className="text-green-700">Completed</span>
+                  </div>
+                  <div className="flex justify-between text-gray-500 text-xs">
+                    <p>Jul 12th 2024</p>
+                    <span>OJWEJS7ISNC</span>
+                  </div>
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
 
-        <div className="flex flex-col gap-4 flex-1">
-          <Card className="md:px-4 pt-4">
-            <CardHeader className="flex justify-between">
-              <label>Revenue</label>
-              <div className="flex gap-4">
+        <div className="flex flex-col gap-4 lg:w-[260px] xl:min-w-[400px] ">
+          <Card className="md:px-4 p-0  flex-1 xl:p-3">
+            <CardHeader className="flex justify-between lg:px-0 lg:py-2">
+              <p className="text-sm xl:text-base">Revenue</p>
+              <div className="flex gap-2 text-xs xl:text-sm">
                 <div className="flex gap-1 items-center">
                   <span className="w-3 h-3 bg-lime-950 rounded"></span>
-                  <label>Income</label>
+                  <p>Income</p>
                 </div>
                 <div className="flex gap-1 items-center">
                   <span className="w-3 h-3 bg-lime-400 rounded"></span>
-                  <label>Expenses</label>
+                  <p>Expenses</p>
                 </div>
               </div>
             </CardHeader>
-            <Divider />
-            <CardBody className="pb-0 gap-2">
-              <div className="flex items-end gap-2">
-                <div className="text-4xl">$193.000</div>
-                <span className="flex items-center gap-1 text-sm">
+            <Divider className="mb-2" />
+            <CardBody className=" p-0 gap-2 items-center justify-center xl:justify-end lg:gap-4 xl:gap-0 xl:items-start">
+              <div className="flex items-end gap-1">
+                <div className="tex-sm xl:text-2xl">$193.000</div>
+                <span className="flex items-center text-xs gap-1">
                   <span className="flex items-center gap-1 text-green-500">
                     <FiTrendingUp />
                     <span>+35%</span>
@@ -202,16 +207,18 @@ export default function DashboardMain() {
                   <span>from last month</span>
                 </span>
               </div>
-              <VerticalBarchart />
+              <div className="w-56 xl:w-full">
+                <VerticalBarchart />
+              </div>
             </CardBody>
           </Card>
 
-          <Card className="md:p-4">
-            <CardHeader className="flex justify-between">
-              <label>Sales Report</label>
+          <Card className="md:p-4 p-0 flex-1">
+            <CardHeader className="flex justify-between lg:p-0 text-sm xl:text-base">
+              <p>Sales Report</p>
               <PiDotsThreeOutlineFill />
             </CardHeader>
-            <CardBody>
+            <CardBody className="lg:p-0 justify-center items-center xl:justify-end">
               <HorizontalBarchart />
             </CardBody>
           </Card>

@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 
 export default function Sidebar() {
   return (
-    <div className=" flex-col  md:w-[250px] hidden lg:flex xl:w-[300px] bg-green-950 h-screen">
+    <div className=" flex-col  md:w-[180px] hidden lg:flex  bg-green-950 h-screen w-full">
       <div className="flex p-8 text-white text-2xl font-bold items-center h-16">
         Siohioma
       </div>
