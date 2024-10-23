@@ -9,6 +9,10 @@ import {
   TableCell,
   getKeyValue,
   SelectItem,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import { useState } from "react";
 import {
@@ -20,6 +24,8 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/checkbox";
+import { BsThreeDots } from "react-icons/bs";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { IoSwapVerticalOutline } from "react-icons/io5";
 import { CiCircleCheck } from "react-icons/ci";
 import { Select, SelectSection } from "@nextui-org/select";
@@ -73,6 +79,7 @@ const rows = [
     email: "WilliamH@gmail.com",
     location: "New York",
     status: "Subscribed",
+    action: "",
   },
 ];
 
@@ -97,10 +104,19 @@ const columns = [
     key: "status",
     label: "Status",
   },
+  {
+    key: "action",
+    label: "Action",
+  },
 ];
 
 export default function Body() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isEdit,
+    onOpen: onEdit,
+    onOpenChange: onEditChange,
+  } = useDisclosure();
 
   return (
     <div className="flex flex-col p-4 ">
@@ -123,28 +139,39 @@ export default function Body() {
 
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
               <ModalContent>
-                <ModalHeader className="flex justify-between border flex-col">
-                  <h1> New user</h1>
-                  <p className="flex text-sm font-thin">
-                    Add a new user to your database
-                  </p>
-                </ModalHeader>
-                <ModalBody className="flex flex-col">
-                  <Input
-                    label="Name"
-                    placeholder="John Doe"
-                    labelPlacement="outside"
-                  ></Input>
-                  <Input
-                    label="Email"
-                    placeholder="John.Doe@gmail.com"
-                    labelPlacement="outside"
-                  ></Input>
-                </ModalBody>
-                <ModalFooter className="flex">
-                  <Button className="text-gray-600 bg-white">Cancel</Button>
-                  <Button className="text-white bg-black">Save</Button>
-                </ModalFooter>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex justify-between border flex-col">
+                      <h1> New user</h1>
+                      <p className="flex text-sm font-thin">
+                        Add a new user to your database
+                      </p>
+                    </ModalHeader>
+                    <ModalBody className="flex flex-col">
+                      <Input
+                        label="Name"
+                        placeholder="John Doe"
+                        labelPlacement="outside"
+                      ></Input>
+                      <Input
+                        label="Email"
+                        placeholder="John.Doe@gmail.com"
+                        labelPlacement="outside"
+                      ></Input>
+                    </ModalBody>
+                    <ModalFooter className="flex">
+                      <Button
+                        onPress={onClose}
+                        className="text-gray-600 bg-white"
+                      >
+                        Cancel
+                      </Button>
+                      <Button onPress={onClose} className="text-white bg-black">
+                        Save
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
               </ModalContent>
             </Modal>
           </div>
@@ -192,88 +219,77 @@ export default function Body() {
           <TableBody items={rows}>
             {(item) => (
               <TableRow key={item.key}>
-                {(columnKey) => (
-                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-                )}
+                <TableCell>{item.key}</TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.email}</TableCell>
+                <TableCell>{item.location}</TableCell>
+                <TableCell>{item.status}</TableCell>
+                <TableCell>
+                  <div>
+                    <Dropdown>
+                      <DropdownTrigger>
+                        <Button>
+                          <BsThreeDots />
+                        </Button>
+                      </DropdownTrigger>
+                      <DropdownMenu>
+                        <DropdownItem onPress={onEdit}>Edit</DropdownItem>
+
+                        <DropdownItem color="danger">Delete</DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                  </div>
+                </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
 
-        {/* <Table>
-          <TableHeader>
-            <TableColumn>
-              <Checkbox />
-            </TableColumn>
-            <TableColumn>#</TableColumn>
-            <TableColumn>Name</TableColumn>
-            <TableColumn>Email</TableColumn>
-            <TableColumn>Location</TableColumn>
-            <TableColumn>Status</TableColumn>
-          </TableHeader>
-
-          <TableBody>
-            <TableRow key="1">
-              <TableCell>
-                <Checkbox />
-              </TableCell>
-              <TableCell>1</TableCell>
-              <TableCell>Alex Smith</TableCell>
-              <TableCell>alexsmith@gmail.com</TableCell>
-              <TableCell>New York,USA</TableCell>
-              <TableCell>
-                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
-                  Subscribed
-                </h3>
-              </TableCell>
-            </TableRow>
-
-            <TableRow key="2">
-              <TableCell>
-                <Checkbox />
-              </TableCell>
-              <TableCell>2</TableCell>
-              <TableCell>Jordan Brown</TableCell>
-              <TableCell>Jordanbrown@gmail.com</TableCell>
-              <TableCell>New York,USA</TableCell>
-              <TableCell>
-                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
-                  Subscribed
-                </h3>
-              </TableCell>
-            </TableRow>
-
-            <TableRow key="3">
-              <TableCell>
-                <Checkbox />
-              </TableCell>
-              <TableCell>3</TableCell>
-              <TableCell>Alex Smith</TableCell>
-              <TableCell>alexsmith@gmail.com</TableCell>
-              <TableCell>New York,USA</TableCell>
-              <TableCell>
-                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
-                  Subscribed
-                </h3>
-              </TableCell>
-            </TableRow>
-
-            <TableRow key="4">
-              <TableCell>
-                <Checkbox />
-              </TableCell>
-              <TableCell>4</TableCell>
-              <TableCell>Alex Smith</TableCell>
-              <TableCell>alexsmith@gmail.com</TableCell>
-              <TableCell>New York,USA</TableCell>
-              <TableCell>
-                <h3 className="border text-green-400 bg-green-100 border-green-400 text-center w-24">
-                  Subscribed
-                </h3>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table> */}
+        <Modal
+          isOpen={isEdit}
+          onOpenChange={onEditChange}
+          placement="top-center"
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalBody className="flex flex-col">
+                  <Input
+                    label="Name"
+                    placeholder="John Doe"
+                    labelPlacement="outside"
+                  ></Input>
+                  <Input
+                    label="Email"
+                    placeholder="John.Doe@gmail.com"
+                    labelPlacement="outside"
+                  ></Input>
+                  <Input
+                    label="Location"
+                    placeholder="Your location"
+                    labelPlacement="outside"
+                  ></Input>
+                  <Select label="Select status">
+                    <SelectItem key="Subscribe"> Subscribe</SelectItem>
+                    <SelectItem key="Unsubscribe"> Unsubscribe</SelectItem>
+                  </Select>
+                </ModalBody>
+                <ModalFooter className="flex">
+                  <Button
+                    onClick={onClose}
+                    color="danger"
+                    className="text-gray-600 bg-white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button onPress={onClose} className="text-white bg-black">
+                    Save
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );

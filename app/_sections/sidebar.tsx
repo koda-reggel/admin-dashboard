@@ -2,10 +2,8 @@
 
 import { SiWindows10 } from "react-icons/si";
 import { FaRegUser } from "react-icons/fa";
-
-import SidebarLinks from "../_components/sidebar-links";
-
 import { FaVideo } from "react-icons/fa";
+import SidebarLinks from "../_components/sidebar-links";
 
 export default function Sidebar() {
   return (
@@ -16,6 +14,7 @@ export default function Sidebar() {
       <div className=" text-white flex  mt-4 flex-col">
         <SidebarLinks icon={<SiWindows10 />} label="Dashboard" href="/" />
         <SidebarLinks icon={<FaRegUser />} label="User" href="/users" />
+        <SidebarLinks icon={<FaVideo />} label="Videos" href="/videos" />
       </div>
     </div>
   );
