@@ -46,6 +46,7 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
+import { FaVideo } from "react-icons/fa6";
 
 const rows = [
   {
@@ -111,6 +112,7 @@ const columns = [
 ];
 
 export default function Body() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isEdit,
@@ -120,9 +122,72 @@ export default function Body() {
 
   return (
     <div className="flex flex-col p-4 ">
+      <div>
+        <Navbar
+          onMenuOpenChange={setIsMenuOpen}
+          maxWidth="full"
+          classNames={{ wrapper: "px-4 h-16" }}
+          className="h-16"
+        >
+          <NavbarContent>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className=" lg:hidden"
+            />
+            <NavbarBrand className="font-bold text-xl">Users</NavbarBrand>
+          </NavbarContent>
+
+          <NavbarContent justify="end">
+            <NavbarItem className="hidden lg:block">
+              <Input
+                startContent={<IoFunnelOutline />}
+                placeholder="Filter users..."
+              ></Input>
+            </NavbarItem>
+            <NavbarItem className="flex border">
+              <Button
+                onPress={onOpen}
+                className="rounded bg-gray-200"
+                endContent={<MdAdd />}
+              >
+                New user
+              </Button>
+            </NavbarItem>
+          </NavbarContent>
+
+          <NavbarMenu>
+            <NavbarMenuItem>
+              <Link href="/" className="w-full" size="lg" color="foreground">
+                Dashboard
+              </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Link
+                href="/users"
+                className="w-full"
+                size="lg"
+                color="foreground"
+              >
+                User
+              </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Link
+                href="/videos"
+                className="w-full"
+                size="lg"
+                color="foreground"
+              >
+                Videos
+              </Link>
+            </NavbarMenuItem>
+          </NavbarMenu>
+        </Navbar>
+      </div>
+
       <div className="flex w-full justify-between  ">
-        <h1 className="flex items-center">User</h1>
-        <div className="flex gap-4">
+        {/* <h1 className="flex items-center">User</h1> */}
+        {/* <div className="flex gap-4">
           <Input
             className="hidden lg:block"
             startContent={<IoFunnelOutline />}
@@ -135,47 +200,10 @@ export default function Body() {
               endContent={<MdAdd />}
             >
               New user
-            </Button>
+            </Button> */}
 
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-              <ModalContent>
-                {(onClose) => (
-                  <>
-                    <ModalHeader className="flex justify-between border flex-col">
-                      <h1> New user</h1>
-                      <p className="flex text-sm font-thin">
-                        Add a new user to your database
-                      </p>
-                    </ModalHeader>
-                    <ModalBody className="flex flex-col">
-                      <Input
-                        label="Name"
-                        placeholder="John Doe"
-                        labelPlacement="outside"
-                      ></Input>
-                      <Input
-                        label="Email"
-                        placeholder="John.Doe@gmail.com"
-                        labelPlacement="outside"
-                      ></Input>
-                    </ModalBody>
-                    <ModalFooter className="flex">
-                      <Button
-                        onPress={onClose}
-                        className="text-gray-600 bg-white"
-                      >
-                        Cancel
-                      </Button>
-                      <Button onPress={onClose} className="text-white bg-black">
-                        Save
-                      </Button>
-                    </ModalFooter>
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
-          </div>
-        </div>
+        {/* </div>
+        </div> */}
       </div>
 
       <div className="flex justify-between gap-4 mt-4">
@@ -244,53 +272,93 @@ export default function Body() {
             )}
           </TableBody>
         </Table>
-
-        <Modal
-          isOpen={isEdit}
-          onOpenChange={onEditChange}
-          placement="top-center"
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalBody className="flex flex-col">
-                  <Input
-                    label="Name"
-                    placeholder="John Doe"
-                    labelPlacement="outside"
-                  ></Input>
-                  <Input
-                    label="Email"
-                    placeholder="John.Doe@gmail.com"
-                    labelPlacement="outside"
-                  ></Input>
-                  <Input
-                    label="Location"
-                    placeholder="Your location"
-                    labelPlacement="outside"
-                  ></Input>
-                  <Select label="Select status">
-                    <SelectItem key="Subscribe"> Subscribe</SelectItem>
-                    <SelectItem key="Unsubscribe"> Unsubscribe</SelectItem>
-                  </Select>
-                </ModalBody>
-                <ModalFooter className="flex">
-                  <Button
-                    onClick={onClose}
-                    color="danger"
-                    className="text-gray-600 bg-white"
-                  >
-                    Cancel
-                  </Button>
-                  <Button onPress={onClose} className="text-white bg-black">
-                    Save
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
       </div>
+
+      <Modal isOpen={isEdit} onOpenChange={onEditChange} placement="center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalBody className="flex flex-col">
+                <Input
+                  label="Name"
+                  placeholder="John Doe"
+                  labelPlacement="outside"
+                ></Input>
+                <Input
+                  label="Email"
+                  placeholder="John.Doe@gmail.com"
+                  labelPlacement="outside"
+                ></Input>
+                <Input
+                  label="Location"
+                  placeholder="Your location"
+                  labelPlacement="outside"
+                ></Input>
+                <Select label="Select status">
+                  <SelectItem key="Subscribe"> Subscribe</SelectItem>
+                  <SelectItem key="Unsubscribe"> Unsubscribe</SelectItem>
+                </Select>
+              </ModalBody>
+              <ModalFooter className="flex">
+                <Button
+                  onClick={onClose}
+                  color="danger"
+                  className="text-gray-600 bg-white"
+                >
+                  Cancel
+                </Button>
+                <Button onPress={onClose} className="text-white bg-black">
+                  Save
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex justify-between border flex-col">
+                <h1> New user</h1>
+                <p className="flex text-sm font-thin">
+                  Add a new user to your database
+                </p>
+              </ModalHeader>
+              <ModalBody className="flex flex-col">
+                <Input
+                  label="Name"
+                  placeholder="John Doe"
+                  labelPlacement="outside"
+                ></Input>
+                <Input
+                  label="Email"
+                  placeholder="John.Doe@gmail.com"
+                  labelPlacement="outside"
+                ></Input>
+                <Input
+                  label="Location"
+                  placeholder="Your location"
+                  labelPlacement="outside"
+                ></Input>
+                <Select label="Select status">
+                  <SelectItem key="Subscribe"> Subscribe</SelectItem>
+                  <SelectItem key="Unsubscribe"> Unsubscribe</SelectItem>
+                </Select>
+              </ModalBody>
+              <ModalFooter className="flex">
+                <Button onPress={onClose} className="text-gray-600 bg-white">
+                  Cancel
+                </Button>
+                <Button onPress={onClose} className="text-white bg-black">
+                  Save
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }

@@ -1,11 +1,27 @@
 "use client";
 import { Input } from "@nextui-org/input";
-import { Card, CardBody, CardFooter, Divider, Image } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Divider,
+  Image,
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { FaVideo } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 
 export default function Body() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [poster, setPoster] = useState([
     {
       title: "Spider-man",
@@ -51,13 +67,59 @@ export default function Body() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex md:w-full justify-between items-center border p-4 sm:text-wrap">
-        <h1>Video</h1>
-        <Input
-          placeholder="Search video"
-          startContent={<FaVideo />}
-          className="flex md:max-w-xs "
-        />
+      <div>
+        <Navbar
+          onMenuOpenChange={setIsMenuOpen}
+          maxWidth="full"
+          classNames={{ wrapper: "px-4 h-16" }}
+          className="h-16"
+        >
+          <NavbarContent>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className=" lg:hidden"
+            />
+            <NavbarBrand className="font-bold text-xl">Video</NavbarBrand>
+          </NavbarContent>
+
+          <NavbarContent justify="end">
+            <NavbarItem className="w-full">
+              <Input
+                placeholder="Search anything in Siohioma.."
+                startContent={<FaVideo />}
+              />
+            </NavbarItem>
+          </NavbarContent>
+          <NavbarContent className="hidden sm:flex gap-4" justify="center">
+            <NavbarMenu>
+              <NavbarMenuItem>
+                <Link href="/" className="w-full" size="lg" color="foreground">
+                  Dashboard
+                </Link>
+              </NavbarMenuItem>
+              <NavbarMenuItem>
+                <Link
+                  href="/users"
+                  className="w-full"
+                  size="lg"
+                  color="foreground"
+                >
+                  User
+                </Link>
+              </NavbarMenuItem>
+              <NavbarMenuItem>
+                <Link
+                  href="/videos"
+                  className="w-full"
+                  size="lg"
+                  color="foreground"
+                >
+                  Videos
+                </Link>
+              </NavbarMenuItem>
+            </NavbarMenu>
+          </NavbarContent>
+        </Navbar>
       </div>
 
       <div className=" p-4 lg:p-0 w-full  overflow-y-scroll h-[calc(100vh-74px)] ">
