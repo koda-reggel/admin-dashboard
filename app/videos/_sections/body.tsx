@@ -121,8 +121,8 @@ export default function Body() {
                       alt={post.title}
                       width={200}
                       height={250}
-                      className="object-cover rounded-xl "
                       src={post.img}
+                      classNames={{ wrapper: "w-full" }}
                     />
                     <div className="flex flex-col">
                       <div className="flex w-full justify-between">
