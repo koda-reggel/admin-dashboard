@@ -6,11 +6,25 @@ import { FiInbox, FiSearch } from "react-icons/fi";
 import { RiBubbleChartLine } from "react-icons/ri";
 
 export default function DashboardNavbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-      <div className="flex justify-between items-center w-[865px]">
-        <label className="font-semibold text-xl">Sales Admin</label>
-        <div>
+    
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      maxWidth="xl"
+      classNames={{ wrapper: "px-4 h-16" }}
+      className="h-16"
+    >
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className=" lg:hidden"
+        />
+        <NavbarBrand className="font-bold text-xl">Sales Admin</NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem className="w-full">
           <Input
             placeholder="Search anything in Siohioma.."
             endContent={<FiSearch />}
