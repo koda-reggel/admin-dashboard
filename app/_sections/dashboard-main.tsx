@@ -181,39 +181,41 @@ export default function DashboardMain() {
         </div>
 
         <div className="flex flex-col gap-4 lg:w-[260px] xl:min-w-[400px] ">
-          <Card className="md:px-4 p-0  flex-1 xl:p-3">
-            <CardHeader className="flex justify-between lg:px-0 lg:py-2">
-              <p className="text-sm xl:text-base">Revenue</p>
-              <div className="flex gap-2 text-xs xl:text-sm">
-                <div className="flex gap-1 items-center">
-                  <span className="w-3 h-3 bg-lime-950 rounded"></span>
-                  <p>Income</p>
+          <div className="max-h-xl flex-1 ">
+            <Card className="md:px-4 p-0 h-full xl:p-3">
+              <CardHeader className="flex justify-between lg:px-0 lg:py-2">
+                <p className="text-sm xl:text-base">Revenue</p>
+                <div className="flex gap-2 text-xs xl:text-sm">
+                  <div className="flex gap-1 items-center">
+                    <span className="w-3 h-3 bg-lime-950 rounded"></span>
+                    <p>Income</p>
+                  </div>
+                  <div className="flex gap-1 items-center">
+                    <span className="w-3 h-3 bg-lime-400 rounded"></span>
+                    <p>Expenses</p>
+                  </div>
                 </div>
-                <div className="flex gap-1 items-center">
-                  <span className="w-3 h-3 bg-lime-400 rounded"></span>
-                  <p>Expenses</p>
-                </div>
-              </div>
-            </CardHeader>
-            <Divider className="mb-2" />
-            <CardBody className=" p-0 gap-2 items-center justify-center xl:justify-end lg:gap-4 xl:gap-0 xl:items-start">
-              <div className="flex items-end gap-1">
-                <div className="tex-sm xl:text-2xl">$193.000</div>
-                <span className="flex items-center text-xs gap-1">
-                  <span className="flex items-center gap-1 text-green-500">
-                    <FiTrendingUp />
-                    <span>+35%</span>
+              </CardHeader>
+              <Divider className="mb-2" />
+              <CardBody className=" p-0 gap-2 items-center justify-center xl:justify-end lg:gap-4 xl:gap-0 xl:items-start">
+                <div className="flex items-end gap-1">
+                  <div className="tex-sm xl:text-2xl">$193.000</div>
+                  <span className="flex items-center text-xs gap-1">
+                    <span className="flex items-center gap-1 text-green-500">
+                      <FiTrendingUp />
+                      <span>+35%</span>
+                    </span>
+                    <span>from last month</span>
                   </span>
-                  <span>from last month</span>
-                </span>
-              </div>
-              <div className="w-56 xl:w-full">
-                <VerticalBarchart />
-              </div>
-            </CardBody>
-          </Card>
+                </div>
+                <div className="w-56 xl:w-full">
+                  <VerticalBarchart />
+                </div>
+              </CardBody>
+            </Card>
+          </div>
 
-          <Card className="md:p-4 p-0 flex-1">
+          <Card className="md:p-4 p-0 max-h-xl flex-1">
             <CardHeader className="flex justify-between lg:p-0 text-sm xl:text-base">
               <p>Sales Report</p>
               <PiDotsThreeOutlineFill />
