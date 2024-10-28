@@ -17,10 +17,10 @@ export default function Body() {
     },
     {
       title: "Joker",
-      duration: "2h 1m",
+      duration: "2h 2m",
       date: "11-11-24",
       description:
-        "After being bitten by a genetically-modified spider, a shy teenager gains spider-like abilities that he uses to fight injustice as a masked superhero and face a vengeful enemy",
+        "Arthur Fleck, a party clown and a failed stand-up comedian, leads an impoverished life with his ailing mother. However, when society shuns him and brands him as a freak, he decides to embrace the life of chaos in Gotham City.",
       img: "https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1500x1500/products/89058/93685/Joker-2019-Final-Style-steps-Poster-buy-original-movie-posters-at-starstills__62518.1669120603.jpg?c=2",
     },
     {
@@ -29,7 +29,7 @@ export default function Body() {
       duration: "2h 1m",
       date: "11-11-24",
       description:
-        "After being bitten by a genetically-modified spider, a shy teenager gains spider-like abilities that he uses to fight injustice as a masked superhero and face a vengeful enemy",
+        "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
     },
     {
       title: "Tenet",
@@ -37,7 +37,7 @@ export default function Body() {
       duration: "2h 1m",
       date: "11-11-24",
       description:
-        "After being bitten by a genetically-modified spider, a shy teenager gains spider-like abilities that he uses to fight injustice as a masked superhero and face a vengeful enemy",
+        "Armed with only the word tenet and fighting for the survival of the entire world, CIA operative, The Protagonist, journeys through a twilight world of international espionage on a global mission that unfolds beyond real time.",
     },
     {
       title: "Outsider",
@@ -45,7 +45,7 @@ export default function Body() {
       duration: "2h 1m",
       date: "11-11-24",
       description:
-        "After being bitten by a genetically-modified spider, a shy teenager gains spider-like abilities that he uses to fight injustice as a masked superhero and face a vengeful enemy",
+        "When an insidious supernatural force edges its way into a seemingly straightforward investigation into the gruesome murder of a young boy, it leads a seasoned cop and an unorthodox investigator to question everything they believe in.",
     },
   ]);
 

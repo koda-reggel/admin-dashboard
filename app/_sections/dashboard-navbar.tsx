@@ -72,6 +72,11 @@ export default function DashboardNavbar() {
             User
           </Link>
         </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link href="/videos" className="w-full" size="lg" color="foreground">
+            Videos
+          </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
