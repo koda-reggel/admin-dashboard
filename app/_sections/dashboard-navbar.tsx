@@ -63,17 +63,17 @@ export default function DashboardNavbar() {
 
       <NavbarMenu>
         <NavbarMenuItem>
-          <Link href="/" className="w-full" size="lg" color="foreground">
+          <Link href="/" className="w-full" color="foreground">
             Dashboard
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link href="/users" className="w-full" size="lg" color="foreground">
+          <Link href="/users" className="w-full" color="foreground">
             User
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link href="/videos" className="w-full" size="lg" color="foreground">
+          <Link href="/videos" className="w-full" color="foreground">
             Videos
           </Link>
         </NavbarMenuItem>

@@ -7,7 +7,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  getKeyValue,
   SelectItem,
   Dropdown,
   DropdownTrigger,
@@ -23,19 +22,16 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { Checkbox } from "@nextui-org/checkbox";
 import { BsThreeDots } from "react-icons/bs";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { IoSwapVerticalOutline } from "react-icons/io5";
+
 import { CiCircleCheck } from "react-icons/ci";
-import { Select, SelectSection } from "@nextui-org/select";
+import { Select } from "@nextui-org/select";
 import { IoFunnelOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
-import { Button, ButtonGroup } from "@nextui-org/button";
+import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { CiLocationOn } from "react-icons/ci";
 import { VscSettings } from "react-icons/vsc";
-import { Pagination, Spinner } from "@nextui-org/react";
 import {
   Navbar,
   NavbarBrand,
@@ -46,7 +42,6 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
-import { FaVideo } from "react-icons/fa6";
 
 const rows = [
   {
@@ -157,53 +152,22 @@ export default function Body() {
 
           <NavbarMenu>
             <NavbarMenuItem>
-              <Link href="/" className="w-full" size="lg" color="foreground">
+              <Link href="/" className="w-full" color="foreground">
                 Dashboard
               </Link>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <Link
-                href="/users"
-                className="w-full"
-                size="lg"
-                color="foreground"
-              >
+              <Link href="/users" className="w-full" color="foreground">
                 User
               </Link>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <Link
-                href="/videos"
-                className="w-full"
-                size="lg"
-                color="foreground"
-              >
+              <Link href="/videos" className="w-full" color="foreground">
                 Videos
               </Link>
             </NavbarMenuItem>
           </NavbarMenu>
         </Navbar>
-      </div>
-
-      <div className="flex w-full justify-between  ">
-        {/* <h1 className="flex items-center">User</h1> */}
-        {/* <div className="flex gap-4">
-          <Input
-            className="hidden lg:block"
-            startContent={<IoFunnelOutline />}
-            placeholder="Filter users..."
-          ></Input>
-          <div className="flex border">
-            <Button
-              onPress={onOpen}
-              className="rounded bg-gray-200"
-              endContent={<MdAdd />}
-            >
-              New user
-            </Button> */}
-
-        {/* </div>
-        </div> */}
       </div>
 
       <div className="flex justify-between gap-4 mt-4">

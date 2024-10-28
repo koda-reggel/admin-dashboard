@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Divider,
   Image,
   Link,
   Navbar,
@@ -18,11 +17,10 @@ import {
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { FaVideo } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
 
 export default function Body() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [poster, setPoster] = useState([
+  const [poster] = useState([
     {
       title: "Spider-man",
       img: "https://miro.medium.com/v2/resize:fit:1400/1*iQhzIW0ZffqWaTI10ywLsA.jpeg",
@@ -93,27 +91,17 @@ export default function Body() {
           <NavbarContent className="hidden sm:flex gap-4" justify="center">
             <NavbarMenu>
               <NavbarMenuItem>
-                <Link href="/" className="w-full" size="lg" color="foreground">
+                <Link href="/" className="w-full" color="foreground">
                   Dashboard
                 </Link>
               </NavbarMenuItem>
               <NavbarMenuItem>
-                <Link
-                  href="/users"
-                  className="w-full"
-                  size="lg"
-                  color="foreground"
-                >
+                <Link href="/users" className="w-full" color="foreground">
                   User
                 </Link>
               </NavbarMenuItem>
               <NavbarMenuItem>
-                <Link
-                  href="/videos"
-                  className="w-full"
-                  size="lg"
-                  color="foreground"
-                >
+                <Link href="/videos" className="w-full" color="foreground">
                   Videos
                 </Link>
               </NavbarMenuItem>
