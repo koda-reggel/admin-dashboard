@@ -13,14 +13,15 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  Pagination,
 } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { FaVideo } from "react-icons/fa";
+import React from "react";
 
 export default function Body() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [poster] = useState([
+  const poster = [
     {
       title: "Spider-man",
       img: "https://miro.medium.com/v2/resize:fit:1400/1*iQhzIW0ZffqWaTI10ywLsA.jpeg",
@@ -61,7 +62,22 @@ export default function Body() {
       description:
         "When an insidious supernatural force edges its way into a seemingly straightforward investigation into the gruesome murder of a young boy, it leads a seasoned cop and an unorthodox investigator to question everything they believe in.",
     },
-  ]);
+  ];
+
+  // Pagination logic
+  const [page, setPage] = React.useState(1);
+  const rowsPerPage = 2; // Number of rows per page
+
+  const pages = Math.ceil(poster.length / rowsPerPage);
+
+  const items = React.useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    return poster.slice(start, end);
+  }, [page, poster]);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="flex flex-col">
@@ -110,11 +126,12 @@ export default function Body() {
         </Navbar>
       </div>
 
-      <div className=" p-4 lg:p-0 w-full  overflow-y-scroll h-[calc(100vh-74px)] ">
+      <div className="p-4 lg:p-0 w-full overflow-y-scroll h-[calc(100vh-74px)]">
         <div className="flex flex-col items-stretch w-full max-w-screen-xl mx-auto gap-4 py-4">
-          {poster.map((post, index) => (
-            <div className="md:flex-1 w-full " key={index}>
-              <Card className="flex ">
+          {/* Render the paginated movie cards */}
+          {items.map((post, index) => (
+            <div className="md:flex-1 w-full" key={index}>
+              <Card className="flex">
                 <CardBody>
                   <div className="md:flex-row gap-8 flex flex-col items-center lg:items-start">
                     <Image
@@ -133,7 +150,7 @@ export default function Body() {
                       </div>
                       <div className="flex flex-col gap-8">
                         <p className="flex font-light">{post.duration}</p>
-                        <p className="flex  justify-center">
+                        <p className="flex justify-center">
                           {post.description}
                         </p>
                       </div>
@@ -147,6 +164,19 @@ export default function Body() {
               </Card>
             </div>
           ))}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex w-full justify-center">
+          <Pagination
+            isCompact
+            showControls
+            showShadow
+            color="secondary"
+            page={page}
+            total={pages}
+            onChange={(page) => setPage(page)}
+          />
         </div>
       </div>
     </div>

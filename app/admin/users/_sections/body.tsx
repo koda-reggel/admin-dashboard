@@ -12,8 +12,6 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Accordion,
-  AccordionItem,
 } from "@nextui-org/react";
 import { useState } from "react";
 import {
@@ -25,8 +23,6 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
-import { CiCircleRemove } from "react-icons/ci";
-
 import { CiCircleCheck } from "react-icons/ci";
 import { Select } from "@nextui-org/select";
 import { IoFunnelOutline } from "react-icons/io5";
@@ -198,7 +194,6 @@ export default function Body() {
             <SelectItem key={"location"}>Location </SelectItem>
             <SelectItem key={"Status"}>Status </SelectItem>
             <SelectItem key={"skills"}>SKills </SelectItem>
-            {/* <SelectItem key={"subskills"}>Sub Skills </SelectItem> */}
           </Select>
         </div>
       </div>
