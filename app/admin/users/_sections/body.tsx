@@ -12,6 +12,8 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Accordion,
+  AccordionItem,
 } from "@nextui-org/react";
 import { useState } from "react";
 import {
@@ -23,6 +25,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
+import { CiCircleRemove } from "react-icons/ci";
 
 import { CiCircleCheck } from "react-icons/ci";
 import { Select } from "@nextui-org/select";
@@ -68,6 +71,7 @@ const rows = [
     location: "London",
     status: "Subscribed",
   },
+
   {
     key: "4",
     number: 4,
@@ -75,7 +79,7 @@ const rows = [
     email: "WilliamH@gmail.com",
     location: "New York",
     status: "Subscribed",
-    action: "",
+    action: " ",
   },
 ];
 
@@ -193,51 +197,59 @@ export default function Body() {
             <SelectItem key={"email"}>Email </SelectItem>
             <SelectItem key={"location"}>Location </SelectItem>
             <SelectItem key={"Status"}>Status </SelectItem>
+            <SelectItem key={"skills"}>SKills </SelectItem>
+            {/* <SelectItem key={"subskills"}>Sub Skills </SelectItem> */}
           </Select>
         </div>
       </div>
 
-      <div className="flex p-4">
-        <Table
-          aria-label="Controlled table example with dynamic content"
-          selectionMode="multiple"
+      <div className="flex p-4 ">
+        <div
+          className="overflow-auto"
+          style={{ maxHeight: "800px", width: "100%" }}
         >
-          <TableHeader columns={columns}>
-            {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
-            )}
-          </TableHeader>
+          <Table
+            aria-label="Controlled table example with dynamic content"
+            selectionMode="multiple"
+          >
+            <TableHeader columns={columns}>
+              {(column) => (
+                <TableColumn key={column.key}>{column.label}</TableColumn>
+              )}
+            </TableHeader>
 
-          <TableBody items={rows}>
-            {(item) => (
-              <TableRow key={item.key}>
-                <TableCell>{item.key}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.location}</TableCell>
-                <TableCell>{item.status}</TableCell>
-                <TableCell>
-                  <div>
-                    <Dropdown>
-                      <DropdownTrigger>
-                        <Button>
-                          <BsThreeDots />
-                        </Button>
-                      </DropdownTrigger>
-                      <DropdownMenu>
-                        <DropdownItem onPress={onEdit}>Edit</DropdownItem>
+            <TableBody items={rows}>
+              {(item) => (
+                <TableRow key={item.key}>
+                  <TableCell>{item.key}</TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>{item.email}</TableCell>
+                  <TableCell>{item.location}</TableCell>
+                  <TableCell>{item.status}</TableCell>
+                  <TableCell>
+                    <div>
+                      <Dropdown>
+                        <DropdownTrigger>
+                          <Button>
+                            <BsThreeDots />
+                          </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu>
+                          <DropdownItem onPress={onEdit}>Edit</DropdownItem>
 
-                        <DropdownItem color="danger">Delete</DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </div>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                          <DropdownItem color="danger">Delete</DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
+      {/* for Edit */}
       <Modal isOpen={isEdit} onOpenChange={onEditChange} placement="center">
         <ModalContent>
           {(onClose) => (
@@ -280,6 +292,7 @@ export default function Body() {
         </ModalContent>
       </Modal>
 
+      {/* for adding new user */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
