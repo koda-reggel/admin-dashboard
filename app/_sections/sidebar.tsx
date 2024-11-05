@@ -15,6 +15,7 @@ export default function Sidebar() {
         <SidebarLinks icon={<SiWindows10 />} label="Dashboard" href="/" />
         <SidebarLinks icon={<FaRegUser />} label="User" href="/users" />
         <SidebarLinks icon={<FaVideo />} label="Videos" href="/videos" />
+        <SidebarLinks icon={<FaVideo />} label="Skills" href="/skills" />
       </div>
     </div>
   );
