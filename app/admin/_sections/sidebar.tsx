@@ -13,7 +13,7 @@ export default function Sidebar() {
         Siohioma
       </div>
       <div className=" text-white flex  mt-4 flex-col">
-        <SidebarLinks icon={<SiWindows10 />} label="Dashboard" href="/" />
+        <SidebarLinks icon={<SiWindows10 />} label="Dashboard" href="/admin" />
         <SidebarLinks icon={<FaRegUser />} label="User" href="/admin/users" />
         <SidebarLinks icon={<FaVideo />} label="Videos" href="/admin/videos" />
         <SidebarLinks

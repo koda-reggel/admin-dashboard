@@ -25,6 +25,10 @@ import { CiSearch } from "react-icons/ci";
 import { FaSortAlphaUp } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";
 import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Modal,
   ModalBody,
   ModalContent,
@@ -32,8 +36,12 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { BsThreeDots } from "react-icons/bs";
+import { link } from "fs";
+import Link from "next/link";
 
 export default function Body() {
+  const isSmallScreen = window.innerWidth < 768;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isSubSkill,
@@ -41,10 +49,16 @@ export default function Body() {
     onOpenChange: onSubSkillChange,
   } = useDisclosure();
 
+  // const {
+  //   isOpen: isEdit,
+  //   onOpen: onOpenEdit,
+  //   onOpenChange: onEditChange,
+  // } = useDisclosure();
+
   const {
-    isOpen: isEdit,
-    onOpen: onOpenEdit,
-    onOpenChange: onEditChange,
+    isOpen: isEditSubSkill,
+    onOpen: onEditSubSkill,
+    onOpenChange: onEditChangeSubSkill,
   } = useDisclosure();
 
   const rows = [
@@ -52,6 +66,27 @@ export default function Body() {
       key: "1",
       skills: "Digital marketing",
       subskills: [
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
+        "Blog Writing",
+        "Social Media Content Creation",
+        "Email Marketing",
         "Blog Writing",
         "Social Media Content Creation",
         "Email Marketing",
@@ -115,11 +150,11 @@ export default function Body() {
         <Button
           onPress={onOpen}
           startContent={
-            <span className="text-lg">
+            <span className="text-lg md:flex md:text-white">
               <IoAddOutline />
             </span>
           }
-          className="bg-green-700 text-white"
+          className="bg-green-700 md:flex md:text-white "
         >
           Add new Skills
         </Button>
@@ -143,15 +178,16 @@ export default function Body() {
                       title={items.skills}
                       classNames={{ title: "text-md" }}
                     >
-                      <div className="flex flex-col gap-2">
+                      <p className="p-4">Sub Skills:</p>
+                      <div className="grid grid-cols-12 grid-flow-row gap-2">
                         {items.subskills.map((subskills, index) => (
                           <div
                             key={index}
-                            className="border p-2 rounded justify-between flex items-center"
+                            className="border p-2 rounded justify-between flex items-center col-span-2"
                           >
                             <></>
                             {subskills}
-                            <div className="flex gap-4">
+                            {/* <div className="flex gap-4">
                               <Button
                                 onPress={onOpenEdit}
                                 isIconOnly
@@ -165,9 +201,33 @@ export default function Body() {
                               >
                                 {<FaRegTrashCan />}
                               </Button>
+                            </div> */}
+
+                            <div>
+                              <Dropdown>
+                                <DropdownTrigger>
+                                  <Button isIconOnly className="bg-transparent">
+                                    <BsThreeDots />
+                                  </Button>
+                                </DropdownTrigger>
+                                <DropdownMenu>
+                                  <DropdownItem
+                                    color="success"
+                                    onPress={onEditSubSkill}
+                                  >
+                                    Edit
+                                  </DropdownItem>
+
+                                  <DropdownItem color="danger">
+                                    Delete
+                                  </DropdownItem>
+                                </DropdownMenu>
+                              </Dropdown>
                             </div>
                           </div>
                         ))}
+                      </div>
+                      <div className="flex p-4">
                         <Button
                           onPress={onOpenSubSkill}
                           startContent={<FaPlus />}
@@ -200,7 +260,7 @@ export default function Body() {
                   <Input placeholder="Input Sub Skills"></Input>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <Button color="danger" onPress={onClose}>
                     Close
                   </Button>
                   <Button color="primary" onPress={onClose}>
@@ -225,7 +285,7 @@ export default function Body() {
                   <Input placeholder="Input Sub Skills"></Input>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onClick={onClose}>
+                  <Button color="danger" onClick={onClose}>
                     Close
                   </Button>
                   <Button color="primary" onClick={onClose}>
@@ -237,7 +297,7 @@ export default function Body() {
           </ModalContent>
         </Modal>
 
-        <Modal isOpen={isEdit} onOpenChange={onEditChange}>
+        <Modal isOpen={isEditSubSkill} onOpenChange={onEditChangeSubSkill}>
           <ModalContent>
             {(onClose) => (
               <>
@@ -246,11 +306,9 @@ export default function Body() {
                 </ModalHeader>
                 <ModalBody>
                   <Input placeholder="Input Sub Skills"></Input>
-                  <Input placeholder="Input Sub Skills"></Input>
-                  <Input placeholder="Input Sub Skills"></Input>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onClick={onClose}>
+                  <Button color="danger" onClick={onClose}>
                     Close
                   </Button>
                   <Button color="primary" onClick={onClose}>
