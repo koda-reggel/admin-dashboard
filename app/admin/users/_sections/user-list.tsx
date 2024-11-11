@@ -12,26 +12,33 @@ import {
 	DropdownTrigger,
 	DropdownMenu,
 	DropdownItem,
-} from '@nextui-org/react';
-
-import {
 	Modal,
 	ModalContent,
 	ModalBody,
 	ModalFooter,
 	useDisclosure,
+	ModalHeader,
 } from '@nextui-org/react';
 import { BsThreeDots } from 'react-icons/bs';
-
 import { Select } from '@nextui-org/select';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { VscSettings } from 'react-icons/vsc';
 import { CiCircleCheck, CiLocationOn } from 'react-icons/ci';
 import { useAppSelector } from '@/hooks/hooks';
+import { deleteUser, updateUser } from '@/actions/user-actions';
+import { useState } from 'react';
+import { User } from '@/models/user';
+import { useFormState } from 'react-dom';
+import { SubmitButton } from '@/components/submit-button';
 
 export default function UserList() {
-	const userState = useAppSelector((user) => user.userState);
+	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const userState = useAppSelector((state) => state.userState);
+	const [userForm, formAction] = useFormState(
+		updateUser(currentUser?.id ?? 0),
+		null
+	);
 
 	const {
 		isOpen: isEdit,
@@ -39,32 +46,36 @@ export default function UserList() {
 		onOpenChange: onEditChange,
 	} = useDisclosure();
 
+	const handleEdit = (user: User) => {
+		setCurrentUser(user);
+		onEdit();
+	};
+
 	return (
 		<>
 			<div className='flex justify-between gap-4'>
 				<div className='flex gap-4 w-96'>
 					<Select startContent={<CiCircleCheck />} placeholder='Status'>
-						<SelectItem key={'subscribe'}>Subscribe</SelectItem>
-						<SelectItem key={'unsubscribe'}>Unsubscribe</SelectItem>
-						<SelectItem key={'bounced'}>Bounced</SelectItem>
+						<SelectItem key='subscribe'>Subscribe</SelectItem>
+						<SelectItem key='unsubscribe'>Unsubscribe</SelectItem>
+						<SelectItem key='bounced'>Bounced</SelectItem>
 					</Select>
 					<Select startContent={<CiLocationOn />} placeholder='Location'>
-						<SelectItem key={'usa'}>New York,USA</SelectItem>
-						<SelectItem key={'uk'}>London,UK</SelectItem>
-						<SelectItem key={'france'}>Paris,France </SelectItem>
-						<SelectItem key={'germany'}>Berlin,Germany </SelectItem>
-						<SelectItem key={'japan'}>Tokyo,Japan </SelectItem>
-						<SelectItem key={'australia'}>Sydney,Australia </SelectItem>
+						<SelectItem key='usa'>New York, USA</SelectItem>
+						<SelectItem key='uk'>London, UK</SelectItem>
+						<SelectItem key='france'>Paris, France</SelectItem>
+						<SelectItem key='germany'>Berlin, Germany</SelectItem>
+						<SelectItem key='japan'>Tokyo, Japan</SelectItem>
+						<SelectItem key='australia'>Sydney, Australia</SelectItem>
 					</Select>
 				</div>
 				<div className='flex w-40'>
 					<Select startContent={<VscSettings />} placeholder='Display'>
-						<SelectItem key={'name'}>Name</SelectItem>
-						<SelectItem key={'email'}>Email </SelectItem>
-						<SelectItem key={'location'}>Location </SelectItem>
-						<SelectItem key={'Status'}>Status </SelectItem>
-						<SelectItem key={'skills'}>SKills </SelectItem>
-						{/* <SelectItem key={"subskills"}>Sub Skills </SelectItem> */}
+						<SelectItem key='name'>Name</SelectItem>
+						<SelectItem key='email'>Email</SelectItem>
+						<SelectItem key='location'>Location</SelectItem>
+						<SelectItem key='status'>Status</SelectItem>
+						<SelectItem key='skills'>Skills</SelectItem>
 					</Select>
 				</div>
 			</div>
@@ -73,61 +84,49 @@ export default function UserList() {
 				className='overflow-auto'
 				style={{ maxHeight: '800px', width: '100%' }}
 			>
-				<Table
-					aria-label='Controlled table example with dynamic content'
-					selectionMode='multiple'
-				>
+				<Table aria-label='User List Table' selectionMode='multiple'>
 					<TableHeader
 						columns={[
-							{
-								key: 'name',
-								label: 'Name',
-							},
-							{
-								key: 'email',
-								label: 'Email',
-							},
-							{
-								key: 'location',
-								label: 'Location',
-							},
-							{
-								key: 'status',
-								label: 'Status',
-							},
-							{
-								key: '',
-								label: 'Action',
-							},
+							{ key: 'name', label: 'Name' },
+							{ key: 'email', label: 'Email' },
+							{ key: 'location', label: 'Location' },
+							{ key: 'status', label: 'Status' },
+							{ key: 'action', label: 'Action' },
 						]}
 					>
 						{(column) => (
 							<TableColumn key={column.key}>{column.label}</TableColumn>
 						)}
 					</TableHeader>
-
 					<TableBody items={userState.users}>
-						{(item) => (
+						{(item: User) => (
 							<TableRow key={item.id}>
 								<TableCell>{item.name}</TableCell>
 								<TableCell>{item.email}</TableCell>
 								<TableCell>{item.location}</TableCell>
 								<TableCell>{item.status}</TableCell>
 								<TableCell>
-									<div>
-										<Dropdown>
-											<DropdownTrigger>
-												<Button isIconOnly variant='light'>
-													<BsThreeDots />
-												</Button>
-											</DropdownTrigger>
-											<DropdownMenu>
-												<DropdownItem onPress={onEdit}>Edit</DropdownItem>
-
-												<DropdownItem color='danger'>Delete</DropdownItem>
-											</DropdownMenu>
-										</Dropdown>
-									</div>
+									<Dropdown>
+										<DropdownTrigger>
+											<Button isIconOnly variant='light'>
+												<BsThreeDots />
+											</Button>
+										</DropdownTrigger>
+										<DropdownMenu
+											onAction={(key) => {
+												if (key === 'edit') {
+													handleEdit(item);
+												} else {
+													deleteUser(Number(item.id));
+												}
+											}}
+										>
+											<DropdownItem key='edit'>Edit</DropdownItem>
+											<DropdownItem color='danger' key='delete'>
+												Delete
+											</DropdownItem>
+										</DropdownMenu>
+									</Dropdown>
 								</TableCell>
 							</TableRow>
 						)}
@@ -138,29 +137,56 @@ export default function UserList() {
 			<Modal isOpen={isEdit} onOpenChange={onEditChange} placement='center'>
 				<ModalContent>
 					{(onClose) => (
-						<>
+						<form action={formAction}>
+							<ModalHeader>Edit</ModalHeader>
 							<ModalBody className='flex flex-col'>
 								<Input
 									label='Name'
 									placeholder='John Doe'
 									labelPlacement='outside'
-								></Input>
+									value={currentUser?.name || ''}
+									onChange={(e) =>
+										setCurrentUser((prev) =>
+											prev ? { ...prev, name: e.target.value } : prev
+										)
+									}
+								/>
 								<Input
 									label='Email'
 									placeholder='John.Doe@gmail.com'
 									labelPlacement='outside'
-								></Input>
+									value={currentUser?.email || ''}
+									onChange={(e) =>
+										setCurrentUser((prev) =>
+											prev ? { ...prev, email: e.target.value } : prev
+										)
+									}
+								/>
 								<Input
 									label='Location'
 									placeholder='Your location'
 									labelPlacement='outside'
-								></Input>
-								<Select label='Select status'>
-									<SelectItem key='Subscribe'> Subscribe</SelectItem>
-									<SelectItem key='Unsubscribe'> Unsubscribe</SelectItem>
+									value={currentUser?.location || ''}
+									onChange={(e) =>
+										setCurrentUser((prev) =>
+											prev ? { ...prev, location: e.target.value } : prev
+										)
+									}
+								/>
+								<Select
+									label='Select status'
+									defaultSelectedKeys={currentUser?.status || ''}
+									// onChange={(e) =>
+									// 	setCurrentUser((prev) =>
+									// 		prev ? { ...prev, status: e.target.value } : prev
+									// 	)
+									// }
+								>
+									<SelectItem key='subscribe'>Subscribe</SelectItem>
+									<SelectItem key='unsubscribe'>Unsubscribe</SelectItem>
 								</Select>
 							</ModalBody>
-							<ModalFooter className='flex'>
+							<ModalFooter>
 								<Button
 									onClick={onClose}
 									color='danger'
@@ -168,11 +194,11 @@ export default function UserList() {
 								>
 									Cancel
 								</Button>
-								<Button onPress={onClose} className='text-white bg-black'>
-									Save
-								</Button>
+								<div>
+									<SubmitButton>Save</SubmitButton>
+								</div>
 							</ModalFooter>
-						</>
+						</form>
 					)}
 				</ModalContent>
 			</Modal>

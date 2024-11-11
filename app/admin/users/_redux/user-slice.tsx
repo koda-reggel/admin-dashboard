@@ -1,36 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserState } from './user-state';
+import { UsersState } from './users-state';
 import { User } from '@/models/user';
 
-const initialState: UserState = {
+const initialState: UsersState = {
 	users: [],
 };
 
 export const userSlice = createSlice({
-	name: 'user',
+	name: 'userSlice',
 	initialState,
 	reducers: {
-		addUserButtonPressed(state: UserState, action: PayloadAction<User>) {
-			return {
-				...state,
-				name: action.payload.name,
-				email: action.payload.email,
-				status: action.payload.status,
-				skills: action.payload.skills,
-				subSkills: action.payload.subSkills,
-				location: action.payload.location,
-			};
-		},
-		usersLoaded(state: UserState, action: PayloadAction<User[]>) {
+		usersLoaded(state: UsersState, action: PayloadAction<User[]>) {
 			return {
 				...state,
 				users: action.payload,
 			};
 		},
-		deleteUserButtonPressed(state: UserState, action: PayloadAction<User>) {
+		deleteUserButtonPressed(state: UsersState, action: PayloadAction<number>) {
 			return {
 				...state,
-				id: action.payload.id,
+				id: action.payload,
 			};
 		},
 	},

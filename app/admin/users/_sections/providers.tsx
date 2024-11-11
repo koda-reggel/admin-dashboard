@@ -13,6 +13,7 @@ export default function Providers({
 	users?: User[];
 }) {
 	const dispatch = useAppDispatch();
+
 	useEffect(() => {
 		if (users) {
 			dispatch(userActions.usersLoaded(users));

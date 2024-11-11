@@ -120,7 +120,11 @@ export default function UserNavbar() {
 									labelPlacement='outside'
 									name='location'
 								></Input>
-								<Select label='Select status' name='status'>
+								<Select
+									label='Select status'
+									name='status'
+									defaultSelectedKeys={['subscribe']}
+								>
 									<SelectItem key='subscribe'> Subscribe</SelectItem>
 									<SelectItem key='unsubscribe'> Unsubscribe</SelectItem>
 								</Select>

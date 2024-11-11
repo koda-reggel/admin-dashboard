@@ -4,9 +4,9 @@ import UserList from './_sections/user-list';
 import UserNavbar from './_sections/user-navbar';
 
 export default async function Page() {
-	const user = await indexUsers();
+	const users = await indexUsers();
 	return (
-		<Providers users={user.data}>
+		<Providers users={users.data}>
 			<div className='w-full flex flex-col p-4 gap-4'>
 				<UserNavbar />
 				<UserList />
