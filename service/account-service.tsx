@@ -40,6 +40,7 @@ export function store({
 export function destroy(id: number) {
 	return fetch(`http://127.0.0.1:8000/api/users/${id}`, {
 		method: 'DELETE',
+		next: { tags: ['users'] },
 	});
 }
 
@@ -61,8 +62,12 @@ export function Put({
 	sub_skills?: string;
 }) {
 	try {
-		const res = fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+		return fetch(`http://127.0.0.1:8000/api/users/${id}`, {
 			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			next: { tags: ['users'] },
 			body: JSON.stringify({
 				email: email,
 				name: name,
@@ -72,7 +77,6 @@ export function Put({
 				sub_skills: sub_skills,
 			}),
 		});
-		console.log(res);
 	} catch (err) {
 		console.log(err);
 	}

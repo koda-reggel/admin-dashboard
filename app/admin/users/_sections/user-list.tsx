@@ -36,9 +36,10 @@ export default function UserList() {
 	const [currentUser, setCurrentUser] = useState<User | null>(null);
 	const userState = useAppSelector((state) => state.userState);
 	const [userForm, formAction] = useFormState(
-		updateUser(currentUser?.id ?? 0),
+		updateUser.bind(null, { userId: currentUser?.id ?? 0 }),
 		null
 	);
+	console.log('userlist', userForm);
 
 	const {
 		isOpen: isEdit,
@@ -143,6 +144,7 @@ export default function UserList() {
 								<Input
 									label='Name'
 									placeholder='John Doe'
+									name='name'
 									labelPlacement='outside'
 									value={currentUser?.name || ''}
 									onChange={(e) =>
@@ -153,6 +155,7 @@ export default function UserList() {
 								/>
 								<Input
 									label='Email'
+									name='email'
 									placeholder='John.Doe@gmail.com'
 									labelPlacement='outside'
 									value={currentUser?.email || ''}
@@ -164,6 +167,7 @@ export default function UserList() {
 								/>
 								<Input
 									label='Location'
+									name='location'
 									placeholder='Your location'
 									labelPlacement='outside'
 									value={currentUser?.location || ''}
@@ -175,12 +179,8 @@ export default function UserList() {
 								/>
 								<Select
 									label='Select status'
-									defaultSelectedKeys={currentUser?.status || ''}
-									// onChange={(e) =>
-									// 	setCurrentUser((prev) =>
-									// 		prev ? { ...prev, status: e.target.value } : prev
-									// 	)
-									// }
+									name='status'
+									defaultSelectedKeys={[currentUser?.status || '']}
 								>
 									<SelectItem key='subscribe'>Subscribe</SelectItem>
 									<SelectItem key='unsubscribe'>Unsubscribe</SelectItem>
@@ -195,7 +195,7 @@ export default function UserList() {
 									Cancel
 								</Button>
 								<div>
-									<SubmitButton>Save</SubmitButton>
+									<SubmitButton onClick={onClose}>Save</SubmitButton>
 								</div>
 							</ModalFooter>
 						</form>

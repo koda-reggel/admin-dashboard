@@ -39,10 +39,14 @@ export async function deleteUser(id: number) {
 	}
 }
 
-export async function updateUser(formData: FormData, id?: number) {
+export async function updateUser(
+	params: { userId: number },
+	_prevState: any,
+	formData: FormData
+) {
 	try {
 		const res = await Put({
-			id: id ?? 0,
+			id: params.userId ?? 0,
 			email: formData.get('email')?.toString() ?? '',
 			name: formData.get('name')?.toString() ?? '',
 			location: formData.get('location')?.toString() ?? '',
@@ -51,8 +55,10 @@ export async function updateUser(formData: FormData, id?: number) {
 			sub_skills: formData.get('subSkills')?.toString() ?? 'undefined',
 		});
 
-		console.log(res);
+		if (res) {
+			revalidateTag('users');
+		}
 	} catch (err) {
-		console.log(err);
+		console.log('update:', err);
 	}
 }
