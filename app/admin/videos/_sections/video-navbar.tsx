@@ -1,7 +1,6 @@
 'use client';
 
 import {
-	user,
 	Navbar,
 	NavbarContent,
 	NavbarMenuToggle,
@@ -12,17 +11,11 @@ import {
 	Input,
 } from '@nextui-org/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaVideo } from 'react-icons/fa';
 
 export default function VideoNavbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	useEffect(() => {
-		if (user) {
-			console.log(user);
-		}
-	}, [user]);
 
 	return (
 		<div>
