@@ -7,7 +7,7 @@ export default async function Page() {
   const users = await indexUsers();
   return (
     <Providers users={users.data}>
-      <div className="w-full flex flex-col p-4 gap-4">
+      <div className="w-full flex flex-col p-4 gap-4 bg-black">
         <UserNavbar />
         <UserList />
       </div>

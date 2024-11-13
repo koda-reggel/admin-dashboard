@@ -23,14 +23,16 @@ export default function VideoNavbar() {
         onMenuOpenChange={setIsMenuOpen}
         maxWidth="full"
         classNames={{ wrapper: "px-4 h-16" }}
-        className="h-16"
+        className="h-16 bg-black"
       >
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className=" lg:hidden"
           />
-          <NavbarBrand className="font-bold text-xl">Video</NavbarBrand>
+          <NavbarBrand className="font-bold text-xl text-gray-200">
+            Video
+          </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">

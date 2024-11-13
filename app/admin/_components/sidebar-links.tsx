@@ -28,13 +28,13 @@ export default function SidebarLinks({
   return (
     <Link href={href}>
       <div
-        className={`flex gap-2 items-center p-4 border-l-2 cursor-pointer  hover:bg-green-800 hover:text-lime-400${
+        className={`flex gap-2 items-center p-4 border-l-2 cursor-pointer  hover:bg-gray-800 hover:text-white${
           isActive
-            ? " border-lime-400 text-lime-400"
+            ? " border-pink-400 text-pink-400"
             : " border-transparent text-white"
         }`}
       >
-        <div className={`${isActive ? "text-lime-400" : ""}`}>{icon}</div>
+        <div className={`${isActive ? "text-pink-400" : ""}`}>{icon}</div>
         <span>{label}</span>
       </div>
     </Link>

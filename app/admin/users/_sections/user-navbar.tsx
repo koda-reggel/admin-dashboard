@@ -24,6 +24,7 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
+import { GiWhiteBook } from "react-icons/gi";
 import { IoFunnelOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 
@@ -44,19 +45,25 @@ export default function UserNavbar() {
         onMenuOpenChange={setIsMenuOpen}
         maxWidth="full"
         classNames={{ wrapper: "px-0 h-16" }}
-        className="h-16"
+        className="h-16 bg-black"
       >
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className=" lg:hidden"
           />
-          <NavbarBrand className="font-bold text-xl">Users</NavbarBrand>
+          <NavbarBrand className="font-bold text-xl text-white">
+            Users
+          </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:block">
             <Input
+              classNames={{
+                inputWrapper: "bg-gray-700",
+                innerWrapper: "text-white",
+              }}
               startContent={<IoFunnelOutline />}
               placeholder="Filter users..."
             ></Input>
@@ -64,7 +71,7 @@ export default function UserNavbar() {
           <NavbarItem>
             <Button
               onPress={onOpen}
-              className="rounded bg-gray-200"
+              className="rounded bg-pink-400 border border-pink-600 text-black"
               endContent={<MdAdd />}
             >
               New user

@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
+import { color } from "framer-motion";
 
 export default function Body() {
   const [email, setEmail] = useState("");
@@ -39,9 +40,6 @@ export default function Body() {
     setLoading(true);
     setError(""); // Clear any previous error
 
-    console.log("Email:", email); // Log email to verify it's correct
-    console.log("Password:", password); // Log password to verify it's correct
-
     try {
       // Hash the password on the frontend before sending it to the backend
       // const hashedPassword = bcrypt.hashSync(password, 10); // Use bcrypt to hash the password (10 is the salt rounds)
@@ -58,29 +56,32 @@ export default function Body() {
       router.push("/admin");
     } catch (error) {
       setError("Invalid credentials, please try again.");
-    } finally {
       setLoading(false);
     }
+    //  finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
-    <div className="flex flex-col mx-auto justify-center  ">
-      <Card className="flex flex-col gap-4 md:w-96 w-64">
-        <CardHeader className="flex justify-center text-3xl">
+    <div className="flex md:mx-auto ">
+      <Card className="flex flex-col gap-4 md:w-96 w-full bg-black">
+        <CardHeader className="flex justify-center text-3xl text-white">
           <p>Login</p>
         </CardHeader>
         <CardBody className="flex flex-col gap-8 ">
           <Input
-            startContent={<MdOutlineEmail className="text-2xl gap-4 " />}
+            // startContent={<MdOutlineEmail className="text-2xl gap-4 " />}
             value={email}
             label="Email"
+            classNames={{ label: "text-white" }}
             labelPlacement="outside"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             type="email"
           />
           <Input
-            startContent={
+            endContent={
               <button
                 className="focus:outline-none"
                 type="button"
@@ -114,7 +115,7 @@ export default function Body() {
           <Button
             onPress={handleLogin}
             isLoading={loading}
-            className="bg-green-500 w-full"
+            className="bg-[#E70E8A] w-full text-white"
           >
             Login
           </Button>

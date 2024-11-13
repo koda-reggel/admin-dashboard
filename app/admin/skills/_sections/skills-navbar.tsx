@@ -24,6 +24,8 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
+import { CiSearch } from "react-icons/ci";
+import { FaSortAlphaUp } from "react-icons/fa";
 import { IoAddOutline, IoFunnelOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 
@@ -32,12 +34,6 @@ export default function UserNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [user, formAction] = useFormState(storeUser, null);
-
-  const {
-    isOpen: isEditSubSkill,
-    onOpen: onEditSubSkill,
-    onOpenChange: onEditChangeSubSkill,
-  } = useDisclosure();
 
   useEffect(() => {
     if (user) {
@@ -49,33 +45,40 @@ export default function UserNavbar() {
       <Navbar
         onMenuOpenChange={setIsMenuOpen}
         maxWidth="full"
-        classNames={{ wrapper: "px-0 h-16" }}
-        className="h-16"
+        classNames={{ wrapper: "m-4 px-0 h-16" }}
+        className="h-16 bg-black"
       >
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className=" lg:hidden"
           />
-          <NavbarBrand className="font-bold text-xl">Skills</NavbarBrand>
+          <NavbarBrand className="font-bold text-xl text-gray-200 ">
+            Skills
+          </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">
-          {/* <NavbarItem>
+          <Input
+            classNames={{
+              inputWrapper: "bg-gray-700 text-white",
+            }}
+            placeholder="Search Skills"
+            className="flex max-w-md"
+            startContent={<CiSearch />}
+          ></Input>
+          <div className="flex">
             <Button
-              onPress={onOpen}
               startContent={
-                <span className="text-lg md:flex text-white ">
-                  <IoAddOutline />
+                <span className="text-lg">
+                  <FaSortAlphaUp />
                 </span>
               }
-              className="bg-green-700 flex"
+              className="bg-pink-500 text-gray-200 hidden md:flex"
             >
-              <div className="hidden md:flex md:text-white ">
-                Add new Skills
-              </div>
+              Filter
             </Button>
-          </NavbarItem> */}
+          </div>
         </NavbarContent>
 
         <NavbarMenu>
@@ -101,34 +104,6 @@ export default function UserNavbar() {
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
-
-      {/* <Modal isOpen={isEditSubSkill} onOpenChange={onEditChangeSubSkill}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Add new Skills
-              </ModalHeader>
-              <ModalBody>
-                <p>Main Skills</p>
-                <Input placeholder="Input Skills"></Input>
-                <p>Sub Skills</p>
-                <Input placeholder="Input Sub Skills"></Input>
-                <Input placeholder="Input Sub Skills"></Input>
-                <Input placeholder="Input Sub Skills"></Input>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Confirm
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal> */}
     </>
   );
 }

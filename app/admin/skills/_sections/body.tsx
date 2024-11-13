@@ -129,25 +129,25 @@ export default function Body() {
   return (
     <div className="flex flex-col ">
       {/* <p className="flex p-4 text-2xl">Skills</p> */}
-      <div className="flex p-4 lg:justify-between gap-2">
-        <div className="flex gap-4 ">
-          <Input
+      <div className="flex p-4 justify-between md:justify-end ">
+        {/* <div className="flex gap-4 "> */}
+        {/* <Input
             placeholder="Search Skills"
             className="flex max-w-md"
             startContent={<CiSearch />}
-          ></Input>
+          ></Input> */}
 
-          <Button
-            startContent={
-              <span className="text-lg">
-                <FaSortAlphaUp />
-              </span>
-            }
-            className="bg-green-700 text-white"
-          >
-            Filter
-          </Button>
-        </div>
+        <Button
+          startContent={
+            <span className="text-lg">
+              <FaSortAlphaUp />
+            </span>
+          }
+          className="bg-green-700 text-white flex md:hidden "
+        >
+          Filter
+        </Button>
+        {/* </div> */}
         <Button
           onPress={onOpen}
           startContent={
@@ -155,9 +155,9 @@ export default function Body() {
               <IoAddOutline />
             </span>
           }
-          className="bg-green-700 flex"
+          className="bg-pink-500 flex"
         >
-          <div className="hidden md:flex md:text-white ">Add new Skills</div>
+          <div className=" md:flex text-gray-200 ">Add new Skills</div>
         </Button>
       </div>
 
@@ -165,7 +165,14 @@ export default function Body() {
         className=" overflow-y-scroll h-[calc(100vh-136px)]"
         // style={{ maxHeight: "100%", width: "100%" }}
       >
-        <Table aria-label="Example static collection table">
+        <Table
+          aria-label="Example static collection table"
+          classNames={{
+            th: "bg-gray-700 text-white hover:bg-gray-900",
+            wrapper: "bg-gray-800 text-white",
+            // base: "hover:bg-gray-900",
+          }}
+        >
           <TableHeader>
             <TableColumn>SKILLS</TableColumn>
           </TableHeader>
@@ -177,7 +184,9 @@ export default function Body() {
                     <AccordionItem
                       key="1"
                       title={items.skills}
-                      classNames={{ title: "text-md" }}
+                      classNames={{
+                        title: "text-md text-white",
+                      }}
                     >
                       {/* for displaying subskills */}
                       <p className="p-4">Sub Skills:</p>
@@ -193,7 +202,7 @@ export default function Body() {
                               <Dropdown>
                                 <DropdownTrigger>
                                   <Button isIconOnly className="bg-transparent">
-                                    <BsThreeDots />
+                                    <BsThreeDots className="text-white" />
                                   </Button>
                                 </DropdownTrigger>
                                 <DropdownMenu>
@@ -217,7 +226,7 @@ export default function Body() {
                         <Button
                           onPress={onOpenSubSkill}
                           startContent={<FaPlus />}
-                          className="bg-lime-500"
+                          className="bg-pink-500 text-gray-200"
                         >
                           Add new Sub skills
                         </Button>
