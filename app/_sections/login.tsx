@@ -65,8 +65,8 @@ export default function Body() {
 
   return (
     <div className="flex flex-col mx-auto justify-center  ">
-      <Card className="flex flex-col gap-8 md:w-96 w-64">
-        <CardHeader className="flex justify-center bg-green-500 text-3xl">
+      <Card className="flex flex-col gap-4 md:w-96 w-64">
+        <CardHeader className="flex justify-center text-3xl">
           <p>Login</p>
         </CardHeader>
         <CardBody className="flex flex-col gap-8 ">
@@ -106,15 +106,15 @@ export default function Body() {
 
           {error && <p className="text-red-500">{error}</p>}
         </CardBody>
-        <CardFooter className="flex justify-between">
-          <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
+        <CardFooter className="flex justify-center">
+          {/* <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
             Remember me
-          </Checkbox>
+          </Checkbox> */}
 
           <Button
             onPress={handleLogin}
             isLoading={loading}
-            className="bg-green-500"
+            className="bg-green-500 w-full"
           >
             Login
           </Button>
