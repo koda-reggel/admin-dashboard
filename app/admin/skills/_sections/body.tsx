@@ -42,6 +42,7 @@ import Link from "next/link";
 
 export default function Body() {
   const isSmallScreen = window.innerWidth < 768;
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isSubSkill,
@@ -49,11 +50,11 @@ export default function Body() {
     onOpenChange: onSubSkillChange,
   } = useDisclosure();
 
-  // const {
-  //   isOpen: isEdit,
-  //   onOpen: onOpenEdit,
-  //   onOpenChange: onEditChange,
-  // } = useDisclosure();
+  const {
+    isOpen: isEdit,
+    onOpen: onOpenEdit,
+    onOpenChange: onEditChange,
+  } = useDisclosure();
 
   const {
     isOpen: isEditSubSkill,
@@ -127,8 +128,8 @@ export default function Body() {
 
   return (
     <div className="flex flex-col ">
-      <p className="flex p-4 text-2xl">Skills</p>
-      <div className="flex p-4 lg:justify-between ">
+      {/* <p className="flex p-4 text-2xl">Skills</p> */}
+      <div className="flex p-4 lg:justify-between gap-2">
         <div className="flex gap-4 ">
           <Input
             placeholder="Search Skills"
@@ -150,13 +151,13 @@ export default function Body() {
         <Button
           onPress={onOpen}
           startContent={
-            <span className="text-lg md:flex md:text-white">
+            <span className="text-lg md:flex text-white ">
               <IoAddOutline />
             </span>
           }
-          className="bg-green-700 md:flex md:text-white "
+          className="bg-green-700 flex"
         >
-          Add new Skills
+          <div className="hidden md:flex md:text-white ">Add new Skills</div>
         </Button>
       </div>
 
@@ -178,8 +179,9 @@ export default function Body() {
                       title={items.skills}
                       classNames={{ title: "text-md" }}
                     >
+                      {/* for displaying subskills */}
                       <p className="p-4">Sub Skills:</p>
-                      <div className="grid grid-cols-12 grid-flow-row gap-2">
+                      <div className="grid md:grid-cols-12 grid-flow-row grid-cols-1 gap-2">
                         {items.subskills.map((subskills, index) => (
                           <div
                             key={index}
@@ -187,22 +189,6 @@ export default function Body() {
                           >
                             <></>
                             {subskills}
-                            {/* <div className="flex gap-4">
-                              <Button
-                                onPress={onOpenEdit}
-                                isIconOnly
-                                className="flex text-xl text-white bg-green-700"
-                              >
-                                {<CiEdit />}
-                              </Button>
-                              <Button
-                                isIconOnly
-                                className="flex text-white text-xl bg-red-700"
-                              >
-                                {<FaRegTrashCan />}
-                              </Button>
-                            </div> */}
-
                             <div>
                               <Dropdown>
                                 <DropdownTrigger>
@@ -244,6 +230,7 @@ export default function Body() {
           </TableBody>
         </Table>
 
+        {/* For adding new skills */}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>
             {(onClose) => (
@@ -254,10 +241,10 @@ export default function Body() {
                 <ModalBody>
                   <p>Main Skills</p>
                   <Input placeholder="Input Skills"></Input>
-                  <p>Sub Skills</p>
+                  {/* <p>Sub Skills</p>
                   <Input placeholder="Input Sub Skills"></Input>
                   <Input placeholder="Input Sub Skills"></Input>
-                  <Input placeholder="Input Sub Skills"></Input>
+                  <Input placeholder="Input Sub Skills"></Input> */}
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" onPress={onClose}>
@@ -272,6 +259,7 @@ export default function Body() {
           </ModalContent>
         </Modal>
 
+        {/* For adding new subskills */}
         <Modal isOpen={isSubSkill} onOpenChange={onSubSkillChange}>
           <ModalContent>
             {(onClose) => (
@@ -281,8 +269,8 @@ export default function Body() {
                 </ModalHeader>
                 <ModalBody>
                   <Input placeholder="Input Sub Skills"></Input>
-                  <Input placeholder="Input Sub Skills"></Input>
-                  <Input placeholder="Input Sub Skills"></Input>
+                  {/* <Input placeholder="Input Sub Skills"></Input>
+                  <Input placeholder="Input Sub Skills"></Input> */}
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" onClick={onClose}>
@@ -297,6 +285,7 @@ export default function Body() {
           </ModalContent>
         </Modal>
 
+        {/* For adding new skkills */}
         <Modal isOpen={isEditSubSkill} onOpenChange={onEditChangeSubSkill}>
           <ModalContent>
             {(onClose) => (

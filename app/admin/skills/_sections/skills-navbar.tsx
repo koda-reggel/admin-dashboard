@@ -24,7 +24,7 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import { IoFunnelOutline } from "react-icons/io5";
+import { IoAddOutline, IoFunnelOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 
 export default function UserNavbar() {
@@ -32,6 +32,12 @@ export default function UserNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [user, formAction] = useFormState(storeUser, null);
+
+  const {
+    isOpen: isEditSubSkill,
+    onOpen: onEditSubSkill,
+    onOpenChange: onEditChangeSubSkill,
+  } = useDisclosure();
 
   useEffect(() => {
     if (user) {
@@ -51,25 +57,25 @@ export default function UserNavbar() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className=" lg:hidden"
           />
-          <NavbarBrand className="font-bold text-xl">Users</NavbarBrand>
+          <NavbarBrand className="font-bold text-xl">Skills</NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:block">
-            <Input
-              startContent={<IoFunnelOutline />}
-              placeholder="Filter users..."
-            ></Input>
-          </NavbarItem>
-          <NavbarItem>
+          {/* <NavbarItem>
             <Button
               onPress={onOpen}
-              className="rounded bg-gray-200"
-              endContent={<MdAdd />}
+              startContent={
+                <span className="text-lg md:flex text-white ">
+                  <IoAddOutline />
+                </span>
+              }
+              className="bg-green-700 flex"
             >
-              New user
+              <div className="hidden md:flex md:text-white ">
+                Add new Skills
+              </div>
             </Button>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarContent>
 
         <NavbarMenu>
@@ -96,56 +102,33 @@ export default function UserNavbar() {
         </NavbarMenu>
       </Navbar>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      {/* <Modal isOpen={isEditSubSkill} onOpenChange={onEditChangeSubSkill}>
         <ModalContent>
           {(onClose) => (
-            <form action={formAction}>
-              <ModalHeader className="flex justify-between border flex-col">
-                <h1> New user</h1>
-                <p className="flex text-sm font-thin">
-                  Add a new user to your database
-                </p>
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Add new Skills
               </ModalHeader>
-              <ModalBody className="flex flex-col">
-                <Input
-                  label="Name"
-                  placeholder="John Doe"
-                  name="name"
-                  labelPlacement="outside"
-                ></Input>
-                <Input
-                  label="Email"
-                  placeholder="John.Doe@gmail.com"
-                  labelPlacement="outside"
-                  name="email"
-                ></Input>
-                <Input
-                  label="Location"
-                  placeholder="Your location"
-                  labelPlacement="outside"
-                  name="location"
-                ></Input>
-                <Select
-                  label="Select status"
-                  name="status"
-                  defaultSelectedKeys={["subscribe"]}
-                >
-                  <SelectItem key="subscribe"> Subscribe</SelectItem>
-                  <SelectItem key="unsubscribe"> Unsubscribe</SelectItem>
-                </Select>
+              <ModalBody>
+                <p>Main Skills</p>
+                <Input placeholder="Input Skills"></Input>
+                <p>Sub Skills</p>
+                <Input placeholder="Input Sub Skills"></Input>
+                <Input placeholder="Input Sub Skills"></Input>
+                <Input placeholder="Input Sub Skills"></Input>
               </ModalBody>
-              <ModalFooter className="flex justify-end">
-                <Button onPress={onClose} className="text-gray-600 bg-white">
-                  Cancel
+              <ModalFooter>
+                <Button color="danger" onPress={onClose}>
+                  Close
                 </Button>
-                <div>
-                  <SubmitButton onClick={onClose}>Save</SubmitButton>
-                </div>
+                <Button color="primary" onPress={onClose}>
+                  Confirm
+                </Button>
               </ModalFooter>
-            </form>
+            </>
           )}
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

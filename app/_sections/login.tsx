@@ -15,6 +15,11 @@ import { useAuth } from "../../hooks/auth";
 import bcrypt from "bcryptjs"; // Import bcryptjs
 import { useRouter } from "next/navigation";
 
+//icons
+import { MdOutlineEmail } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa6";
+import { FaEyeSlash } from "react-icons/fa6";
+
 export default function Body() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +27,13 @@ export default function Body() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const router = useRouter();
+
+  const handlePasswordVisibility = () => {
+    setIsVisible(!isVisible); // Toggle the state
+  };
 
   const handleLogin = async () => {
     setLoading(true);
@@ -53,32 +64,58 @@ export default function Body() {
   };
 
   return (
-    <div className="flex flex-col mx-auto justify-center">
-      <Card className="flex flex-col">
-        <CardHeader className="flex justify-center">
+    <div className="flex flex-col mx-auto justify-center  ">
+      <Card className="flex flex-col gap-8 md:w-96 w-64">
+        <CardHeader className="flex justify-center bg-green-500 text-3xl">
           <p>Login</p>
         </CardHeader>
-        <CardBody className="flex flex-col gap-4">
+        <CardBody className="flex flex-col gap-8 ">
           <Input
+            startContent={<MdOutlineEmail className="text-2xl gap-4 " />}
             value={email}
+            label="Email"
+            labelPlacement="outside"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             type="email"
           />
           <Input
+            startContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={handlePasswordVisibility}
+                aria-label="toggle password visibility"
+              >
+                {isVisible ? (
+                  <FaRegEye className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <FaEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisible ? "text" : "password"}
+            className=""
             value={password}
+            label="Password"
+            labelPlacement="outside"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            type="password"
+            // type="password"
           />
+
+          {error && <p className="text-red-500">{error}</p>}
+        </CardBody>
+        <CardFooter className="flex justify-between">
           <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
             Remember me
           </Checkbox>
 
-          {error && <p className="text-red-500">{error}</p>}
-        </CardBody>
-        <CardFooter>
-          <Button onPress={handleLogin} isLoading={loading}>
+          <Button
+            onPress={handleLogin}
+            isLoading={loading}
+            className="bg-green-500"
+          >
             Login
           </Button>
         </CardFooter>
