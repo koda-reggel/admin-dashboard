@@ -61,7 +61,7 @@ const data = {
     {
       label: "",
       data: [50, 200, 400],
-      backgroundColor: "#14532d",
+      backgroundColor: "#9d174d",
       borderRadius: 5,
     },
   ],

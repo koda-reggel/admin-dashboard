@@ -38,7 +38,7 @@ export default function VideoList() {
         {/* Render the paginated movie cards */}
         {items.map((item, index) => (
           <div className="md:flex-1 w-full" key={index}>
-            <Card className="flex text-gray-200 bg-gray-700">
+            <Card className="flex text-gray-200 bg-[#171717]">
               <CardBody>
                 <div className="md:flex-row gap-8 flex flex-col items-center lg:items-start">
                   <Image
@@ -84,9 +84,9 @@ export default function VideoList() {
       <div className="flex w-full justify-center">
         <Pagination
           classNames={{
-            item: "bg-gray-700",
-            prev: "bg-grey-700",
-            next: "bg-gray-700",
+            item: "bg-[#171717] text-white hover:bg-green-500",
+            prev: "bg-[#171717]",
+            next: "bg-[#171717]",
             cursor: "bg-pink-700",
           }}
           isCompact

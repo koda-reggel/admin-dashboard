@@ -8,7 +8,7 @@ import { LiaStarOfLifeSolid } from "react-icons/lia";
 
 export default function Sidebar() {
   return (
-    <div className=" flex-col  md:w-[180px] xl:w-[225px] hidden lg:flex  bg-black border border-white h-full w-full">
+    <div className=" flex-col  md:w-[180px] xl:w-[225px] hidden lg:flex  bg-black  border-r border-gray-600 h-full w-full">
       <div className="flex p-8 text-white text-2xl font-bold items-center h-16">
         Siohioma
       </div>

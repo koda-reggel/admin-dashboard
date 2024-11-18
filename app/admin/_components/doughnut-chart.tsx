@@ -11,7 +11,7 @@ const data = {
     {
       label: "",
       data: [12, 19, 3],
-      backgroundColor: ["#a3e635", "#047857", "#f97316"],
+      backgroundColor: ["#be185d", "#E70E8A", "#f9a8d4"],
     },
   ],
 };

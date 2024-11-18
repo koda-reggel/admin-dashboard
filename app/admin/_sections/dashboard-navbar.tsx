@@ -24,14 +24,16 @@ export default function DashboardNavbar() {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="xl"
       classNames={{ wrapper: "px-4 h-16" }}
-      className="h-16"
+      className="h-16 bg-black "
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className=" lg:hidden"
         />
-        <NavbarBrand className="font-bold text-xl">Sales Admin</NavbarBrand>
+        <NavbarBrand className="font-bold text-xl text-gray-200">
+          Sales Admin
+        </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent justify="end">

@@ -57,13 +57,13 @@ const data = {
     {
       label: "Income",
       data: [12, 43, 56, 43, 65, 23],
-      backgroundColor: "#14532d",
+      backgroundColor: "#9d174d",
       borderRadius: 5,
     },
     {
       label: "Expenses",
       data: [12, 43, 56, 43, 65, 23],
-      backgroundColor: "#a3e635",
+      backgroundColor: "#ec4899",
       borderRadius: 5,
     },
   ],

@@ -61,7 +61,7 @@ export default function UserNavbar() {
           <NavbarItem className="hidden lg:block">
             <Input
               classNames={{
-                inputWrapper: "bg-gray-700",
+                inputWrapper: "bg-gray-700 data-[hover=true]:bg-gray-600",
                 innerWrapper: "text-white",
               }}
               startContent={<IoFunnelOutline />}
@@ -71,7 +71,7 @@ export default function UserNavbar() {
           <NavbarItem>
             <Button
               onPress={onOpen}
-              className="rounded bg-pink-400 border border-pink-600 text-black"
+              className="rounded bg-pink-500 text-gray-200"
               endContent={<MdAdd />}
             >
               New user

@@ -61,7 +61,7 @@ export default function UserNavbar() {
         <NavbarContent justify="end">
           <Input
             classNames={{
-              inputWrapper: "bg-gray-700 text-white",
+              inputWrapper: "bg-transparent border border-gray-200 text-white",
             }}
             placeholder="Search Skills"
             className="flex max-w-md"
@@ -74,7 +74,7 @@ export default function UserNavbar() {
                   <FaSortAlphaUp />
                 </span>
               }
-              className="bg-pink-500 text-gray-200 hidden md:flex"
+              className="bg-[#E70E8A] text-gray-200 hidden md:flex"
             >
               Filter
             </Button>

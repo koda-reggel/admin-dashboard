@@ -19,6 +19,9 @@ import {
   useDisclosure,
   ModalHeader,
 } from "@nextui-org/react";
+
+import makeAnimated from "react-select/animated";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
 import { Select } from "@nextui-org/select";
 import { Button } from "@nextui-org/button";
@@ -52,6 +55,58 @@ export default function UserList() {
     onEdit();
   };
 
+  const location = [
+    {
+      key: "usa",
+      place: "New York",
+    },
+    {
+      key: "uk",
+      place: "London",
+    },
+    {
+      key: "fr",
+      place: "Paris",
+    },
+    {
+      key: "gr",
+      place: "Berlin",
+    },
+    {
+      key: "jp",
+      place: "Japan",
+    },
+    {
+      key: "aus",
+      place: "Sydney",
+    },
+  ];
+
+  const display = [
+    {
+      key: "name",
+      value: "name",
+    },
+    {
+      key: "email",
+      value: "email",
+    },
+    {
+      key: "location",
+      value: "location",
+    },
+    {
+      key: "status",
+      value: "status",
+    },
+    {
+      key: "skills",
+      value: "skills",
+    },
+  ];
+
+  const animatedComponents = makeAnimated();
+
   return (
     <>
       <div className="flex justify-between gap-4">
@@ -60,40 +115,41 @@ export default function UserList() {
             startContent={<CiCircleCheck className="text-white text-lg" />}
             placeholder="Status"
             classNames={{
-              trigger: "bg-gray-700 hover:bg-gray-600",
-              value: "text-white",
-              selectorIcon: "text-white",
+              mainWrapper: "rounded-lg",
+              trigger: "bg-[#171717] rounded-lg data-[hover=true]:bg-gray-500",
+              listbox: " bg-[#171717] text-gray-200",
+              popoverContent: "bg-gray-900",
+              value: "text-gray-200",
+              selectorIcon: "text-gray-200",
             }}
           >
             <SelectItem key="subscribe">Subscribe</SelectItem>
             <SelectItem key="unsubscribe">Unsubscribe</SelectItem>
             <SelectItem key="bounced">Bounced</SelectItem>
           </Select>
-          <Select
-            startContent={<CiLocationOn className="text-white text-lg" />}
-            placeholder="Location"
-            classNames={{
-              trigger: "bg-gray-700 hover:bg-gray-600",
-              value: "text-white",
-              selectorIcon: "text-white",
-            }}
+
+          <Autocomplete
+            multiple
+            label="Select location"
+            className="max-w-xs"
+            defaultItems={location}
           >
-            <SelectItem key="usa">New York, USA</SelectItem>
-            <SelectItem key="uk">London, UK</SelectItem>
-            <SelectItem key="france">Paris, France</SelectItem>
-            <SelectItem key="germany">Berlin, Germany</SelectItem>
-            <SelectItem key="japan">Tokyo, Japan</SelectItem>
-            <SelectItem key="australia">Sydney, Australia</SelectItem>
-          </Select>
+            {(item) => (
+              <AutocompleteItem key={item.key}>{item.place}</AutocompleteItem>
+            )}
+          </Autocomplete>
         </div>
         <div className="flex w-40">
-          <Select
+          {/* <Select
             startContent={<VscSettings className="text-white text-lg" />}
             placeholder="Display"
             classNames={{
-              trigger: "bg-gray-700 hover:bg-gray-600",
-              value: "text-white",
-              selectorIcon: "text-white",
+              mainWrapper: "rounded-lg",
+              trigger: "bg-[#171717] rounded-lg data-[hover=true]:bg-gray-500",
+              listbox: " bg-[#171717] text-gray-200",
+              popoverContent: "bg-gray-900",
+              value: "text-gray-200",
+              selectorIcon: "text-gray-200",
             }}
           >
             <SelectItem key="name">Name</SelectItem>
@@ -101,7 +157,15 @@ export default function UserList() {
             <SelectItem key="location">Location</SelectItem>
             <SelectItem key="status">Status</SelectItem>
             <SelectItem key="skills">Skills</SelectItem>
-          </Select>
+          </Select> */}
+
+          {/* <Select
+      closeMenuOnSelect={false}
+      components={animatedComponents}
+      defaultValue={[colourOptions[4], colourOptions[5]]}
+      isMulti
+      options={colourOptions}
+    /> */}
         </div>
       </div>
 
@@ -112,8 +176,11 @@ export default function UserList() {
         <Table
           aria-label="User List Table"
           classNames={{
-            th: "bg-gray-700 text-white hover:bg-gray-900",
-            wrapper: "bg-gray-800 text-white",
+            th: "bg-gray-600 text-gray-200 ",
+            wrapper: "bg-[#171717] text-gray-200 ",
+            tr: "rounded-lg hover:bg-gray-800",
+            td: "data-[selected=true]:before:opacity-100 group-aria-[selected=false]:group-data-[hover=true]:before:opacity-0",
+
             // base: "hover:bg-gray-900",
           }}
           selectionMode="multiple"
@@ -153,8 +220,22 @@ export default function UserList() {
                           deleteUser(Number(item.id));
                         }
                       }}
+                      classNames={
+                        {
+                          // list: "bg-gray-700 text-white ",
+                          // base: "bg-gray-900 border",
+                        }
+                      }
                     >
-                      <DropdownItem key="edit">Edit</DropdownItem>
+                      <DropdownItem
+                        // classNames={{
+                        //   base: "bg-gray-500 border",
+                        //   wrapper: "bg-gray-500",
+                        // }}
+                        key="edit"
+                      >
+                        Edit
+                      </DropdownItem>
                       <DropdownItem color="danger" key="delete">
                         Delete
                       </DropdownItem>

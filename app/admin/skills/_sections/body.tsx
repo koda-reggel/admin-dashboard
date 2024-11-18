@@ -143,7 +143,7 @@ export default function Body() {
               <FaSortAlphaUp />
             </span>
           }
-          className="bg-green-700 text-white flex md:hidden "
+          className="bg-[#E70E8A] text-white flex md:hidden "
         >
           Filter
         </Button>
@@ -155,7 +155,7 @@ export default function Body() {
               <IoAddOutline />
             </span>
           }
-          className="bg-pink-500 flex"
+          className="bg-[#E70E8A] flex"
         >
           <div className=" md:flex text-gray-200 ">Add new Skills</div>
         </Button>
@@ -168,8 +168,8 @@ export default function Body() {
         <Table
           aria-label="Example static collection table"
           classNames={{
-            th: "bg-gray-700 text-white hover:bg-gray-900",
-            wrapper: "bg-gray-800 text-white",
+            th: "bg-gray-600 text-white ",
+            wrapper: "bg-[#171717] border text-white",
             // base: "hover:bg-gray-900",
           }}
         >
@@ -207,7 +207,7 @@ export default function Body() {
                                 </DropdownTrigger>
                                 <DropdownMenu>
                                   <DropdownItem
-                                    color="success"
+                                    color="primary"
                                     onPress={onEditSubSkill}
                                   >
                                     Edit
@@ -226,7 +226,7 @@ export default function Body() {
                         <Button
                           onPress={onOpenSubSkill}
                           startContent={<FaPlus />}
-                          className="bg-pink-500 text-gray-200"
+                          className="bg-[#E70E8A] text-gray-200"
                         >
                           Add new Sub skills
                         </Button>
