@@ -1,9 +1,6 @@
+import { redirect } from "next/navigation";
 import Login from "./_sections/login";
 
 export default function Page() {
-  return (
-    <div className="flex flex-col mx-auto h-screen justify-center">
-      <Login />
-    </div>
-  );
+  return redirect("/auth/login");
 }

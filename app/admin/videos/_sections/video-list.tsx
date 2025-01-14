@@ -65,7 +65,7 @@ export default function VideoList() {
                 </div>
               </CardBody>
               <CardFooter className="flex justify-end gap-4">
-                {/* <Button color='primary'>Approve</Button> */}
+                {/* <Button color="primary">Approve</Button> */}
                 <Button
                   color="danger"
                   onPress={() => {
@@ -84,14 +84,15 @@ export default function VideoList() {
       <div className="flex w-full justify-center">
         <Pagination
           classNames={{
-            item: "bg-[#171717] text-white hover:bg-green-500",
-            prev: "bg-[#171717]",
-            next: "bg-[#171717]",
+            item: "bg-[#171717] text-white hover:text-black hover:rounded-lg",
+            prev: page === 1 ? "hidden" : "bg-[#171717] text-lg",
+            next: page === pages ? "hidden" : "bg-[#171717] text-lg",
             cursor: "bg-pink-700",
           }}
           isCompact
           showControls
-          showShadow
+          initialPage={1}
+          // showShadow
           color="primary"
           page={page}
           total={pages}

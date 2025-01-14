@@ -43,7 +43,10 @@ export default function VideoNavbar() {
             />
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent
+          className="hidden bg-green-500 sm:flex gap-4"
+          justify="center"
+        >
           <NavbarMenu>
             <NavbarMenuItem>
               <Link href="/admin" className="w-full" color="foreground">
